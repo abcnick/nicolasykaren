@@ -54,6 +54,17 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* Desktop uses fondo-principal as full cover */
+@media (min-width: 768px) {
+  body {
+    background-image: url('../img/fondo-principal.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
 /* ============================================================
    4. TYPOGRAPHY — Elegant wedding style
    ============================================================ */
@@ -254,9 +265,17 @@ section {
   margin: 0 auto;
   position: relative;
   background-image: url('../img/fondo-central.png');
-  background-size: 100% auto;
+  background-size: 100% 100%;
   background-position: center;
-  background-repeat: repeat-y;
+  background-repeat: no-repeat;
+}
+
+/* Desktop: sections transparent, body background shows through */
+@media (min-width: 768px) {
+  section {
+    background-image: none;
+    background: transparent;
+  }
 }
 
 /* Floral separator between sections */
@@ -358,28 +377,37 @@ img {
   margin: 0 auto;
 }
 
+/* Mobile: fondo-superior at top, fondo-inferior at bottom */
 .invitation-content::before {
   content: '';
   display: block;
   width: 100%;
-  padding-bottom: 177%; /* Aspect ratio of the superior image (tall mobile) */
+  height: 0;
+  padding-bottom: 50%;
   background-image: url('../img/fondo-superior.png');
   background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: top center;
-  margin-bottom: -60%;
+  background-position: bottom center;
 }
 
 .invitation-content::after {
   content: '';
   display: block;
   width: 100%;
-  padding-bottom: 177%;
+  height: 0;
+  padding-bottom: 50%;
   background-image: url('../img/fondo-inferior.png');
   background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: bottom center;
-  margin-top: -60%;
+  background-position: top center;
+}
+
+/* Desktop: hide the mobile top/bottom background images */
+@media (min-width: 768px) {
+  .invitation-content::before,
+  .invitation-content::after {
+    display: none;
+  }
 }
 
 /* ============================================================
