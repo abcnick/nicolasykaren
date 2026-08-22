@@ -127,6 +127,9 @@
       }
       cardContent.style.display = 'block';
     }
+
+    // Show all content sections now that guest is loaded
+    showContentSections(guest);
   }
 
   /**
@@ -168,6 +171,22 @@
         }
       });
     });
+  }
+
+  /**
+   * Show a beautiful landing page when no guest parameter is provided.
+   * Hides all invitation content and shows a simple elegant welcome screen.
+   */
+  function showContentSections(guest) {
+    var sections = document.querySelectorAll('#countdown-section, #event-details-section, #photos-section, #messages-section, #dresscode-section, #gift-section, #rsvp-section');
+    sections.forEach(function (section) {
+      section.style.display = '';
+    });
+
+    // Initialize RSVP form with guest data
+    if (window.RSVP && typeof window.RSVP.init === 'function') {
+      window.RSVP.init(guest.id, guest.ticketCount || 1);
+    }
   }
 
   /**

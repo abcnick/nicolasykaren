@@ -44,7 +44,7 @@
     </div>
 
     <!-- Countdown Section -->
-    <section id="countdown-section">
+    <section id="countdown-section" style="display:none;">
         <h2>Cuenta Regresiva</h2>
         <div class="countdown-display">
             <div class="countdown-unit">
@@ -68,7 +68,7 @@
     </section>
 
     <!-- Event Details Section -->
-    <section id="event-details-section">
+    <section id="event-details-section" style="display:none;">
         <h2>Detalles del Evento</h2>
 
         <!-- Ceremony -->
@@ -96,26 +96,26 @@
     </section>
 
     <!-- Photos Section -->
-    <section id="photos-section">
+    <section id="photos-section" style="display:none;">
         <h2>Fotos</h2>
         <div id="photos-grid"></div>
     </section>
 
     <!-- Messages Section -->
-    <section id="messages-section">
+    <section id="messages-section" style="display:none;">
         <h2>Mensajes</h2>
         <div id="messages-container"></div>
     </section>
 
     <!-- Dress Code Section -->
-    <section id="dresscode-section">
+    <section id="dresscode-section" style="display:none;">
         <h2>Código de Vestimenta</h2>
         <p id="dresscode-text"></p>
         <div id="dresscode-colors"></div>
     </section>
 
     <!-- Gift Section -->
-    <section id="gift-section">
+    <section id="gift-section" style="display:none;">
         <h2 id="gift-heading"></h2>
         <p id="gift-message"></p>
         <div id="gift-bank-details">
@@ -128,7 +128,7 @@
     </section>
 
     <!-- RSVP Section -->
-    <section id="rsvp-section">
+    <section id="rsvp-section" style="display:none;">
         <h2>Confirmar Asistencia</h2>
 
         <form id="rsvp-form" onsubmit="event.preventDefault(); RSVP.submit();">
@@ -185,16 +185,21 @@
         // GuestPage.init() handles URL parsing, envelope display, and API fetch
         // It's auto-initialized in guest.js on DOMContentLoaded
 
-        // Initialize content sections that read from CONFIG
-        if (typeof CONFIG !== 'undefined' && CONFIG.wedding && CONFIG.wedding.date) {
-            Countdown.start(CONFIG.wedding.date);
+        // Only show content sections if there's a guest parameter
+        var params = new URLSearchParams(window.location.search);
+        var guestId = params.get('guest');
+        if (guestId && guestId.trim() !== '') {
+            // Initialize content sections that read from CONFIG
+            if (typeof CONFIG !== 'undefined' && CONFIG.wedding && CONFIG.wedding.date) {
+                Countdown.start(CONFIG.wedding.date);
+            }
+            EventDetails.init();
+            Photos.init();
+            Messages.init();
+            DressCode.init();
+            Gift.init();
+            Logo.init();
         }
-        EventDetails.init();
-        Photos.init();
-        Messages.init();
-        DressCode.init();
-        Gift.init();
-        Logo.init();
 
         // RSVP is initialized after guest data is loaded (handled in guest.js)
     });
