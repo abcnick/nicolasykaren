@@ -13,6 +13,7 @@
   min-height: 100vh;
   min-height: 100dvh;
   width: 100%;
+  padding: 0;
   background: radial-gradient(ellipse at center, #1a2a4a 0%, #0F1C2E 60%, #080e1a 100%);
   position: relative;
   overflow: hidden;
@@ -48,97 +49,81 @@
   width: 85vw;
   max-width: 320px;
   height: 230px;
+  margin: 0 auto;
   perspective: 1200px;
   cursor: pointer;
   z-index: 2;
 }
 
-/* Envelope body — Navy blue with shimmer texture */
+/* Envelope body — uses sobre-cuerpo.png */
 .envelope-back {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 72%;
-  background: linear-gradient(145deg, #1B2838 0%, #1e3050 40%, #162540 80%, #0F1C2E 100%);
-  border-radius: 0 0 12px 12px;
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.4),
-    0 2px 8px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(201, 169, 110, 0.1);
+  height: 65%;
+  background-image: url('../img/envelope/sobre-cuerpo.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
   z-index: 2;
-  border: 1px solid rgba(201, 169, 110, 0.2);
-  border-top: none;
-  overflow: hidden; /* Clip anything that peeks out */
+  overflow: hidden;
 }
 
-/* Gold edge line on envelope */
+/* Remove the CSS-only styling that conflicts with the image */
 .envelope-back::after {
+  display: none;
+}
+
+/* Wax seal — positioned at the junction of flap and body */
+.envelope-back::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 10%;
-  width: 80%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(201, 169, 110, 0.6), transparent);
-}
-
-/* Wax Seal — Gold/Bronze circle with initials */
-.envelope-back::before {
-  content: 'K & N';
-  position: absolute;
-  top: 50%;
+  top: -25px;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle at 35% 35%, #e8c547, #C9A96E 40%, #B8860B 70%, #8B6914 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Great Vibes', cursive;
-  font-size: 0.95rem;
-  color: #1B2838;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-  box-shadow: 
-    0 4px 16px rgba(0, 0, 0, 0.4),
-    0 2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
-    inset 0 2px 4px rgba(255, 255, 255, 0.2);
+  transform: translateX(-50%);
+  width: 55px;
+  height: 55px;
+  background-image: url('../img/envelope/sobre-sello.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 0;
+  color: transparent;
   z-index: 10;
-  line-height: 60px;
-  text-align: center;
+  line-height: normal;
+  display: block;
 }
 
-/* Triangular flap — Navy blue, rotates open */
+/* Flap — uses sobre-solapa.png, aligned to top */
 .envelope-flap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 52%;
-  background: linear-gradient(180deg, #0F1C2E 0%, #1B2838 60%, #1e3050 100%);
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  height: 50%;
+  background-image: url('../img/envelope/sobre-solapa.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  clip-path: none;
   transform-origin: top center;
   transform: rotateX(0deg);
   z-index: 3;
-  transition: z-index 0s;
-  border: 1px solid rgba(201, 169, 110, 0.15);
+  border: none;
 }
 
-/* Gold accent on flap edges */
+/* Remove flap CSS overlay */
 .envelope-flap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, rgba(201, 169, 110, 0.1) 0%, transparent 50%);
-  clip-path: polygon(0 0, 50% 100%, 100% 0);
-  pointer-events: none;
+  display: none;
 }
 
 /* Invitation card — Cream white with floral border */
@@ -390,31 +375,5 @@
 
 
 /* ==========================================================================
-   IMAGE-BASED ENVELOPE OVERRIDE
-   When real PNG assets exist, they override the CSS shapes
+   IMAGE-BASED ENVELOPE — Real PNG assets are now the primary styling above
    ========================================================================== */
-
-/* If user has sobre-cuerpo.png, use it as background */
-.envelope-back {
-  background-image: url('../img/envelope/sobre-cuerpo.png');
-  background-size: cover;
-  background-position: center;
-  background-color: #1B2838; /* Fallback if image not loaded */
-}
-
-.envelope-flap {
-  background-image: url('../img/envelope/sobre-solapa.png');
-  background-size: cover;
-  background-position: center bottom;
-  background-color: #0F1C2E; /* Fallback */
-}
-
-.envelope-back::before {
-  /* Seal - will use image if available */
-  background-image: url('../img/envelope/sobre-sello.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  font-size: 0; /* Hide text content when image is used */
-  color: transparent;
-}

@@ -25,9 +25,9 @@ const CONFIG = {
   },
 
   itinerary: [
-    { time: "4:00 PM", description: "Ceremonia" },
-    { time: "5:00 PM", description: "Cóctel" },
-    { time: "7:00 PM", description: "Recepción y Cena" }
+    { time: "4:00 PM", description: "Ceremonia", icon: "church" },
+    { time: "5:00 PM", description: "Cóctel", icon: "cocktail" },
+    { time: "7:00 PM", description: "Recepción y Cena", icon: "dinner" }
   ],
 
   dressCode: {

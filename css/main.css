@@ -32,7 +32,7 @@
   --text-dark: #2C3E50;
   --font-script: 'Great Vibes', cursive;
   --font-heading: 'Cormorant Garamond', serif;
-  --font-body: 'Montserrat', sans-serif;
+  --font-body: 'Cormorant Garamond', serif;
 }
 
 /* ============================================================
@@ -46,14 +46,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
   color: var(--text-light);
-  background-color: var(--navy-dark);
-  background-image: 
-    radial-gradient(ellipse at 20% 50%, rgba(44, 62, 80, 0.3) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 20%, rgba(27, 40, 56, 0.4) 0%, transparent 50%),
-    radial-gradient(ellipse at 50% 80%, rgba(15, 28, 46, 0.5) 0%, transparent 50%);
+  background-color: #0a1628;
+  background-image: url('../img/fondo-largo.png');
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: repeat-y;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
@@ -154,11 +154,12 @@ a:hover {
    ============================================================ */
 .floral-corner {
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.85;
+  opacity: 0.9;
+  display: block;
 }
 
 .floral-top-left {
@@ -169,8 +170,8 @@ a:hover {
 .floral-top-left::before {
   content: '';
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -184,12 +185,12 @@ a:hover {
 .floral-top-right::before {
   content: '';
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
-  transform: scaleX(-1); /* Mirror horizontally */
+  transform: scaleX(-1);
 }
 
 .floral-bottom-left {
@@ -200,12 +201,12 @@ a:hover {
 .floral-bottom-left::before {
   content: '';
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
-  transform: scaleY(-1); /* Flip vertically */
+  transform: scaleY(-1);
 }
 
 .floral-bottom-right {
@@ -216,12 +217,29 @@ a:hover {
 .floral-bottom-right::before {
   content: '';
   position: absolute;
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
-  transform: scale(-1, -1); /* Flip both */
+  transform: scale(-1, -1);
+}
+
+/* ============================================================
+   6b. BACKGROUND PATTERN (disabled — using real images)
+   ============================================================ */
+body::after {
+  display: none;
+}
+
+/* Ensure all content is above the background pattern */
+.envelope-screen,
+.invitation-content,
+#landing-page,
+#error-page,
+.music-toggle {
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================================================
@@ -247,31 +265,28 @@ section {
   position: relative;
 }
 
-/* Gold ornamental separator between sections */
+/* Floral separator between sections */
 section + section::before {
-  content: '✦ ✦ ✦';
+  content: '';
   display: block;
   position: absolute;
-  top: -0.5rem;
+  top: -25px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 0.7rem;
-  color: var(--gold);
-  letter-spacing: 0.8em;
-  opacity: 0.7;
+  width: 200px;
+  height: 50px;
+  background-image: url('../img/flores-separador.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 0;
+  color: transparent;
+  letter-spacing: 0;
+  opacity: 1;
 }
 
 section + section::after {
-  content: '';
-  display: block;
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  opacity: 0.5;
+  display: none; /* Remove the gold line since separator image handles it */
 }
 
 section h2 {
@@ -345,30 +360,32 @@ img {
 .invitation-content {
   transition: opacity 1s ease-in-out;
   position: relative;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .invitation-content::before {
   content: '';
   display: block;
   width: 100%;
-  height: 120px;
+  height: 100px;
   background-image: url('../img/flores-borde-top.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center top;
-  margin-bottom: 1rem;
+  background-position: center;
+  margin-bottom: 0;
 }
 
 .invitation-content::after {
   content: '';
   display: block;
   width: 100%;
-  height: 120px;
+  height: 100px;
   background-image: url('../img/flores-borde-bottom.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center bottom;
-  margin-top: 1rem;
+  background-position: center;
+  margin-top: 0;
 }
 
 /* ============================================================
@@ -533,11 +550,36 @@ img {
 
 #itinerary-list li {
   display: flex;
-  flex-direction: column;
-  padding: 1rem 0 1rem 1.5rem;
+  flex-direction: row;
+  align-items: center;
+  padding: 1.2rem 0;
   border-bottom: none;
   position: relative;
-  gap: 0.2rem;
+  gap: 1rem;
+}
+
+.itinerary-icon {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+}
+
+.itinerary-icon img,
+.itinerary-icon-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.itinerary-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.itinerary-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
 }
 
 /* Dot on timeline */
@@ -545,7 +587,8 @@ img {
   content: '';
   position: absolute;
   left: -26px;
-  top: 1.3rem;
+  top: 50%;
+  transform: translateY(-50%);
   width: 12px;
   height: 12px;
   background: var(--gold);
@@ -656,6 +699,60 @@ img {
   font-size: 0.75rem;
   text-align: center;
   color: var(--text-muted);
+}
+
+/* Dresscode gender guidelines */
+.dresscode-guidelines {
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.dresscode-gender {
+  text-align: center;
+}
+
+.dresscode-icon {
+  width: 80px;
+  height: 120px;
+  display: block;
+  margin: 0 auto 0.75rem;
+}
+
+.dresscode-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.dresscode-icon svg {
+  width: 100%;
+  height: 100%;
+  color: var(--gold);
+}
+
+.dresscode-gender p {
+  color: var(--text-light);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.dresscode-gender strong {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.dresscode-note {
+  color: #e8c547;
+  font-size: 0.9rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(232, 197, 71, 0.08);
+  border: 1px solid rgba(232, 197, 71, 0.2);
+  border-radius: 8px;
+  display: inline-block;
 }
 
 /* ============================================================
@@ -1153,6 +1250,13 @@ button:active,
    26. MEDIA QUERIES — Tablet (768px+)
    ============================================================ */
 @media (min-width: 768px) {
+  body {
+    background-image: url('../img/fondo-principal.png');
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
   h2 { font-size: 1.8rem; }
   h3 { font-size: 1.4rem; }
 
@@ -1174,9 +1278,8 @@ button:active,
     gap: 1.5rem;
   }
 
-  .floral-corner {
-    width: 180px;
-    height: 180px;
+  .invitation-content {
+    max-width: 650px;
   }
 
   .landing-names {
@@ -1204,11 +1307,6 @@ button:active,
 
   section {
     padding: 5rem 2rem;
-  }
-
-  .floral-corner {
-    width: 220px;
-    height: 220px;
   }
 }
 

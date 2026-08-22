@@ -120,6 +120,22 @@
   }
 
   /**
+   * Get SVG icon string for an itinerary item.
+   * @param {string} iconName - Icon identifier (church, cocktail, dinner)
+   * @returns {string} SVG markup string
+   */
+  function getItineraryIcon(iconName) {
+    var icons = {
+      church: 'img/icons/ceremonia.png',
+      cocktail: 'img/icons/coctel.png',
+      dinner: 'img/icons/recepcion.png'
+    };
+    var src = icons[iconName];
+    if (!src) return '';
+    return '<img src="' + src + '" alt="' + (iconName || '') + '" class="itinerary-icon-img">';
+  }
+
+  /**
    * Render the itinerary timeline in chronological order.
    * Hides the itinerary section if no items are configured.
    */
@@ -154,6 +170,13 @@
     sorted.forEach(function (item) {
       var li = document.createElement('li');
 
+      var iconSpan = document.createElement('span');
+      iconSpan.className = 'itinerary-icon';
+      iconSpan.innerHTML = getItineraryIcon(item.icon || '');
+
+      var infoDiv = document.createElement('div');
+      infoDiv.className = 'itinerary-info';
+
       var timeSpan = document.createElement('span');
       timeSpan.className = 'time';
       timeSpan.textContent = item.time || '';
@@ -162,9 +185,11 @@
       descSpan.className = 'description';
       descSpan.textContent = item.description || '';
 
-      li.appendChild(timeSpan);
-      li.appendChild(document.createTextNode(' '));
-      li.appendChild(descSpan);
+      infoDiv.appendChild(timeSpan);
+      infoDiv.appendChild(descSpan);
+
+      li.appendChild(iconSpan);
+      li.appendChild(infoDiv);
 
       listEl.appendChild(li);
     });
