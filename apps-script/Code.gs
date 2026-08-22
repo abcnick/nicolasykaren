@@ -122,7 +122,7 @@ function handleGetGuest(id) {
     }
   }
 
-  return { error: true, message: 'Guest not found' };
+  return { error: true, notFound: true, message: 'Guest not found' };
 }
 
 /**
@@ -284,8 +284,8 @@ function handleDeleteGuest(body) {
 }
 
 /**
- * Submit or update an RSVP for a guest.
- * Upsert behavior: update existing if guestId already has a record.
+ * Submit an RSVP for a guest.
+ * Once submitted, the RSVP cannot be modified (rejects re-submission).
  */
 function handleSubmitRsvp(body) {
   var guestId = body.guestId;
@@ -312,7 +312,7 @@ function handleSubmitRsvp(body) {
 
   var attendance = body.attendance;
   var attendeeNames = body.attendeeNames || [];
-  var phone = body.phone || '';
+  var phone = body.phone || body.phoneNumber || '';
   var message = body.message || '';
   var submittedAt = new Date().toISOString();
 
@@ -322,17 +322,10 @@ function handleSubmitRsvp(body) {
   var rsvpSheet = getRsvpsSheet();
   var rsvpData = rsvpSheet.getDataRange().getValues();
 
-  // Check if RSVP already exists for this guest (upsert)
+  // Check if RSVP already exists for this guest (reject re-submission)
   for (var i = 1; i < rsvpData.length; i++) {
     if (rsvpData[i][0] === guestId) {
-      // Update existing row
-      var row = i + 1; // 1-indexed
-      rsvpSheet.getRange(row, 2).setValue(attendance);
-      rsvpSheet.getRange(row, 3).setValue(attendeeNamesStr);
-      rsvpSheet.getRange(row, 4).setValue(phone);
-      rsvpSheet.getRange(row, 5).setValue(message);
-      rsvpSheet.getRange(row, 6).setValue(submittedAt);
-      return { success: true, updated: true };
+      return { error: true, message: 'RSVP already submitted. Cannot modify.' };
     }
   }
 

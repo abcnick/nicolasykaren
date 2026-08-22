@@ -74,7 +74,7 @@ a:hover {
 }
 
 /* ============================================================
-   5. SECTIONS — Elegant spacing with separators
+   5. SECTIONS — Elegant spacing with ornamental separators
    ============================================================ */
 section {
   padding: 3rem 1.5rem;
@@ -85,12 +85,28 @@ section {
 }
 
 section + section::before {
+  content: '✦';
+  display: block;
+  width: auto;
+  height: auto;
+  background: none;
+  margin: 0 auto 2.5rem auto;
+  position: absolute;
+  top: -0.6rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9rem;
+  color: #c9a96e;
+  letter-spacing: 0.5em;
+}
+
+section + section::after {
   content: '';
   display: block;
-  width: 60px;
+  width: 120px;
   height: 1px;
   background: linear-gradient(90deg, transparent, #c9a96e, transparent);
-  margin: 0 auto 3rem auto;
+  margin: 0 auto;
   position: absolute;
   top: 0;
   left: 50%;
@@ -120,6 +136,17 @@ header img,
   width: 100%;
   height: auto;
   margin: 0 auto;
+}
+
+/* When envelope screen is visible, force header hidden */
+.envelope-screen[style*="display: flex"] ~ header,
+.envelope-screen[style*="display:flex"] ~ header {
+  display: none !important;
+}
+
+/* Also hide header when envelope-screen is displayed via class */
+body.envelope-active header {
+  display: none !important;
 }
 
 /* ============================================================
@@ -283,7 +310,7 @@ img {
 }
 
 /* ============================================================
-   12. PHOTOS GRID
+   12. PHOTOS GRID — Uniform aspect ratio
    ============================================================ */
 #photos-section {
   padding-bottom: 2rem;
@@ -298,10 +325,16 @@ img {
 
 #photos-grid img {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
+  aspect-ratio: 4/3;
   object-fit: cover;
+  border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#photos-grid img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* ============================================================
@@ -328,9 +361,30 @@ img {
   gap: 0.5rem;
 }
 
+/* Match the class names used in dresscode.js */
+.swatch-square {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.swatch-square:hover {
+  transform: scale(1.1);
+}
+
+.swatch-name {
+  font-size: 0.8rem;
+  text-align: center;
+  color: #666;
+}
+
+/* Legacy classes (keep for compatibility) */
 .color-swatch__square {
-  width: 52px;
-  height: 52px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 2px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -495,12 +549,82 @@ textarea {
   margin-top: 0.5rem;
 }
 
+/* Attendee name inputs */
+.attendee-name-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ddd4ca;
+  border-radius: 8px;
+  min-height: 44px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
+  margin-bottom: 0.75rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.attendee-name-input:focus {
+  outline: none;
+  border-color: #8E44AD;
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.1);
+}
+
 #rsvp-confirmation {
   text-align: center;
   padding: 2rem;
   background: #fff;
   border-radius: 12px;
   border: 1px solid #d4edda;
+}
+
+/* RSVP Confirmed State — read-only elegant card */
+.rsvp-confirmed-card {
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, #fff, #faf8f5);
+  border-radius: 16px;
+  border: 1px solid #e8ddd4;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.rsvp-confirmed-title {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #27ae60;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.rsvp-confirmed-detail {
+  color: #5a4a3a;
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+}
+
+.rsvp-confirmed-phone {
+  font-size: 0.9rem;
+  color: #8a7a6a;
+  margin-top: 1rem;
+}
+
+.rsvp-confirmed-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.rsvp-confirmed-name-tag {
+  display: inline-block;
+  padding: 0.35rem 0.9rem;
+  background: linear-gradient(135deg, #f5f0eb, #ede0d4);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #5a4a3a;
+  border: 1px solid #e8ddd4;
 }
 
 #rsvp-error {

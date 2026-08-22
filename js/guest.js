@@ -186,6 +186,11 @@
     // Show header
     var header = document.querySelector('header');
     if (header) header.style.display = '';
+    var logoContainer = document.getElementById('logo-container');
+    if (logoContainer) logoContainer.style.display = '';
+
+    // Remove envelope-active class so header can show
+    document.body.classList.remove('envelope-active');
 
     // Show and animate the invitation content wrapper
     var contentWrapper = document.querySelector('.invitation-content');
@@ -221,9 +226,15 @@
       window.Logo.init();
     }
 
-    // Initialize RSVP form with guest data
-    if (window.RSVP && typeof window.RSVP.init === 'function') {
-      window.RSVP.init(guest.id, guest.ticketCount || 1);
+    // Initialize RSVP: if already submitted, show read-only state; otherwise show form
+    if (window.RSVP) {
+      if (guest.rsvpStatus === 'submitted' && guest.rsvp) {
+        if (typeof window.RSVP.showConfirmedState === 'function') {
+          window.RSVP.showConfirmedState(guest.rsvp);
+        }
+      } else if (typeof window.RSVP.init === 'function') {
+        window.RSVP.init(guest.id, guest.ticketCount || 1);
+      }
     }
   }
 
@@ -269,8 +280,12 @@
 
     // Hide header and content while showing envelope
     var header = document.querySelector('header');
+    var logoContainer = document.getElementById('logo-container');
     if (header) {
       header.style.display = 'none';
+    }
+    if (logoContainer) {
+      logoContainer.style.display = 'none';
     }
     var contentWrapper = document.querySelector('.invitation-content');
     if (contentWrapper) {
@@ -281,6 +296,10 @@
     // Show the envelope screen (full viewport centered) or fallback to envelope-wrapper
     var envelopeScreen = document.querySelector('.envelope-screen');
     var envelopeWrapper = document.querySelector('.envelope-wrapper');
+
+    // Add body class to ensure header stays hidden while envelope is active
+    document.body.classList.add('envelope-active');
+
     if (envelopeScreen) {
       envelopeScreen.style.display = 'flex';
     } else if (envelopeWrapper) {

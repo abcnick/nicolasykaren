@@ -281,11 +281,111 @@
     }
   }
 
+  /**
+   * Show a read-only confirmation card when the guest has already submitted RSVP.
+   * Hides the form entirely. No edit option.
+   * @param {Object} rsvpData - The RSVP record from the API
+   * @param {number} rsvpData.attendance - Number of attendees (0 = declined)
+   * @param {Array} rsvpData.attendeeNames - Array of attendee name strings
+   * @param {string} rsvpData.phone - Phone number
+   * @param {string} [rsvpData.message] - Optional message
+   */
+  function showConfirmedState(rsvpData) {
+    var form = document.getElementById('rsvp-form');
+    var confirmation = document.getElementById('rsvp-confirmation');
+    var section = document.getElementById('rsvp-section');
+
+    // Hide the form
+    if (form) {
+      form.style.display = 'none';
+    }
+
+    // Hide old simple confirmation if present
+    if (confirmation) {
+      confirmation.style.display = 'none';
+    }
+
+    // Update the section heading to reflect confirmed state
+    if (section) {
+      var heading = section.querySelector('h2');
+      if (heading) {
+        heading.textContent = 'Tu Confirmación';
+      }
+    }
+
+    // Build the read-only confirmation card
+    var card = document.createElement('div');
+    card.className = 'rsvp-confirmed-card';
+
+    // Checkmark and title
+    var title = document.createElement('div');
+    title.className = 'rsvp-confirmed-title';
+    title.textContent = '✓ Tu asistencia ha sido confirmada';
+    card.appendChild(title);
+
+    if (!rsvpData) {
+      // Minimal fallback
+      var fallback = document.createElement('p');
+      fallback.className = 'rsvp-confirmed-detail';
+      fallback.textContent = 'Ya confirmaste tu asistencia.';
+      card.appendChild(fallback);
+    } else {
+      // Attendance count
+      var attendanceEl = document.createElement('p');
+      attendanceEl.className = 'rsvp-confirmed-detail';
+      var attendance = parseInt(rsvpData.attendance, 10);
+      if (attendance === 0) {
+        attendanceEl.textContent = 'No podrás asistir';
+        title.textContent = '✓ Tu respuesta ha sido registrada';
+      } else if (attendance === 1) {
+        attendanceEl.textContent = '1 persona confirmada';
+      } else {
+        attendanceEl.textContent = attendance + ' personas confirmadas';
+      }
+      card.appendChild(attendanceEl);
+
+      // Attendee names
+      var names = rsvpData.attendeeNames;
+      if (Array.isArray(names) && names.length > 0) {
+        var namesEl = document.createElement('div');
+        namesEl.className = 'rsvp-confirmed-names';
+        for (var i = 0; i < names.length; i++) {
+          var nameTag = document.createElement('span');
+          nameTag.className = 'rsvp-confirmed-name-tag';
+          nameTag.textContent = names[i];
+          namesEl.appendChild(nameTag);
+        }
+        card.appendChild(namesEl);
+      }
+
+      // Phone (masked: show last 4 digits)
+      if (rsvpData.phone) {
+        var phoneStr = String(rsvpData.phone);
+        var maskedPhone;
+        if (phoneStr.length > 4) {
+          maskedPhone = '•••• ' + phoneStr.slice(-4);
+        } else {
+          maskedPhone = phoneStr;
+        }
+        var phoneEl = document.createElement('p');
+        phoneEl.className = 'rsvp-confirmed-detail rsvp-confirmed-phone';
+        phoneEl.textContent = 'Tel: ' + maskedPhone;
+        card.appendChild(phoneEl);
+      }
+    }
+
+    // Insert the card into the RSVP section
+    if (section) {
+      section.appendChild(card);
+    }
+  }
+
   // Expose public API
   window.RSVP = {
     init: init,
     validate: validate,
     submit: submit,
+    showConfirmedState: showConfirmedState,
     _validatePhone: _validatePhone
   };
 })();
