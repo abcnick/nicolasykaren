@@ -69,6 +69,7 @@
   z-index: 2;
   border: 1px solid rgba(201, 169, 110, 0.2);
   border-top: none;
+  overflow: hidden; /* Clip anything that peeks out */
 }
 
 /* Gold edge line on envelope */
@@ -143,7 +144,7 @@
 /* Invitation card — Cream white with floral border */
 .card {
   position: absolute;
-  top: 18%;
+  top: 30%;
   left: 5%;
   width: 90%;
   height: 82%;
@@ -385,4 +386,35 @@
     max-width: 420px;
     height: 300px;
   }
+}
+
+
+/* ==========================================================================
+   IMAGE-BASED ENVELOPE OVERRIDE
+   When real PNG assets exist, they override the CSS shapes
+   ========================================================================== */
+
+/* If user has sobre-cuerpo.png, use it as background */
+.envelope-back {
+  background-image: url('../img/envelope/sobre-cuerpo.png');
+  background-size: cover;
+  background-position: center;
+  background-color: #1B2838; /* Fallback if image not loaded */
+}
+
+.envelope-flap {
+  background-image: url('../img/envelope/sobre-solapa.png');
+  background-size: cover;
+  background-position: center bottom;
+  background-color: #0F1C2E; /* Fallback */
+}
+
+.envelope-back::before {
+  /* Seal - will use image if available */
+  background-image: url('../img/envelope/sobre-sello.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-size: 0; /* Hide text content when image is used */
+  color: transparent;
 }

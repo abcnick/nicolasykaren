@@ -48,7 +48,7 @@ const CONFIG = {
       accountHolder: "Karen & Nicolas",
       accountNumber: "XXXX-XXXX-XXXX" // TODO: Replace with actual account number
     },
-    paymentLink: "https://payment-provider.com/link" // TODO: Replace with actual payment link
+    paymentLink: "" // Empty = won't show
   },
 
   messages: [

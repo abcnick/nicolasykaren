@@ -154,10 +154,11 @@ a:hover {
    ============================================================ */
 .floral-corner {
   position: absolute;
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   pointer-events: none;
   z-index: 0;
+  opacity: 0.85;
 }
 
 .floral-top-left {
@@ -168,9 +169,9 @@ a:hover {
 .floral-top-left::before {
   content: '';
   position: absolute;
-  width: 120px;
-  height: 120px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M5 60 C5 30 30 5 60 5' stroke='%23C9A96E' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M10 80 C10 40 40 10 80 10' stroke='%23C9A96E' stroke-width='0.8' fill='none' opacity='0.4'/%3E%3Cellipse cx='20' cy='20' rx='8' ry='5' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(-45 20 20)' opacity='0.7'/%3E%3Cellipse cx='35' cy='12' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(-30 35 12)' opacity='0.5'/%3E%3Cellipse cx='12' cy='35' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(-60 12 35)' opacity='0.5'/%3E%3Ccircle cx='28' cy='28' r='4' fill='none' stroke='%23C9A96E' stroke-width='0.6' opacity='0.5'/%3E%3Ccircle cx='28' cy='28' r='1.5' fill='%23C9A96E' opacity='0.4'/%3E%3C/svg%3E");
+  width: 150px;
+  height: 150px;
+  background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -183,11 +184,12 @@ a:hover {
 .floral-top-right::before {
   content: '';
   position: absolute;
-  width: 120px;
-  height: 120px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M115 60 C115 30 90 5 60 5' stroke='%23C9A96E' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M110 80 C110 40 80 10 40 10' stroke='%23C9A96E' stroke-width='0.8' fill='none' opacity='0.4'/%3E%3Cellipse cx='100' cy='20' rx='8' ry='5' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(45 100 20)' opacity='0.7'/%3E%3Cellipse cx='85' cy='12' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(30 85 12)' opacity='0.5'/%3E%3Cellipse cx='108' cy='35' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(60 108 35)' opacity='0.5'/%3E%3Ccircle cx='92' cy='28' r='4' fill='none' stroke='%23C9A96E' stroke-width='0.6' opacity='0.5'/%3E%3Ccircle cx='92' cy='28' r='1.5' fill='%23C9A96E' opacity='0.4'/%3E%3C/svg%3E");
+  width: 150px;
+  height: 150px;
+  background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
+  transform: scaleX(-1); /* Mirror horizontally */
 }
 
 .floral-bottom-left {
@@ -198,11 +200,12 @@ a:hover {
 .floral-bottom-left::before {
   content: '';
   position: absolute;
-  width: 120px;
-  height: 120px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M5 60 C5 90 30 115 60 115' stroke='%23C9A96E' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M10 40 C10 80 40 110 80 110' stroke='%23C9A96E' stroke-width='0.8' fill='none' opacity='0.4'/%3E%3Cellipse cx='20' cy='100' rx='8' ry='5' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(45 20 100)' opacity='0.7'/%3E%3Cellipse cx='35' cy='108' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(30 35 108)' opacity='0.5'/%3E%3C/svg%3E");
+  width: 150px;
+  height: 150px;
+  background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
+  transform: scaleY(-1); /* Flip vertically */
 }
 
 .floral-bottom-right {
@@ -213,11 +216,12 @@ a:hover {
 .floral-bottom-right::before {
   content: '';
   position: absolute;
-  width: 120px;
-  height: 120px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M115 60 C115 90 90 115 60 115' stroke='%23C9A96E' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M110 40 C110 80 80 110 40 110' stroke='%23C9A96E' stroke-width='0.8' fill='none' opacity='0.4'/%3E%3Cellipse cx='100' cy='100' rx='8' ry='5' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(-45 100 100)' opacity='0.7'/%3E%3Cellipse cx='85' cy='108' rx='6' ry='4' fill='%231B2838' stroke='%23C9A96E' stroke-width='0.5' transform='rotate(-30 85 108)' opacity='0.5'/%3E%3C/svg%3E");
+  width: 150px;
+  height: 150px;
+  background-image: url('../img/flores-esquina.png');
   background-size: contain;
   background-repeat: no-repeat;
+  transform: scale(-1, -1); /* Flip both */
 }
 
 /* ============================================================
@@ -340,6 +344,31 @@ img {
    ============================================================ */
 .invitation-content {
   transition: opacity 1s ease-in-out;
+  position: relative;
+}
+
+.invitation-content::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 120px;
+  background-image: url('../img/flores-borde-top.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  margin-bottom: 1rem;
+}
+
+.invitation-content::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 120px;
+  background-image: url('../img/flores-borde-bottom.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  margin-top: 1rem;
 }
 
 /* ============================================================
@@ -472,32 +501,70 @@ img {
   text-decoration: none;
 }
 
-/* Itinerary */
+/* Itinerary Timeline — Vertical line with dots */
 #itinerary-section {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+#itinerary-section h3 {
+  margin-bottom: 1.5rem;
 }
 
 #itinerary-list {
   list-style: none;
   padding: 0;
-  margin: 1rem 0;
+  margin: 1.5rem auto;
   text-align: left;
-  max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 350px;
+  position: relative;
+  padding-left: 30px;
+}
+
+/* Vertical line */
+#itinerary-list::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(201, 169, 110, 0.3));
 }
 
 #itinerary-list li {
   display: flex;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(201, 169, 110, 0.15);
-  color: var(--text-light);
-  font-size: 0.95rem;
+  flex-direction: column;
+  padding: 1rem 0 1rem 1.5rem;
+  border-bottom: none;
+  position: relative;
+  gap: 0.2rem;
 }
 
-#itinerary-list li:last-child {
-  border-bottom: none;
+/* Dot on timeline */
+#itinerary-list li::before {
+  content: '';
+  position: absolute;
+  left: -26px;
+  top: 1.3rem;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 2px solid var(--navy-dark);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.2);
+}
+
+#itinerary-list li .time {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+#itinerary-list li .description {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  opacity: 0.85;
 }
 
 /* ============================================================
@@ -1108,8 +1175,8 @@ button:active,
   }
 
   .floral-corner {
-    width: 160px;
-    height: 160px;
+    width: 180px;
+    height: 180px;
   }
 
   .landing-names {
@@ -1140,8 +1207,8 @@ button:active,
   }
 
   .floral-corner {
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
   }
 }
 
@@ -1162,4 +1229,56 @@ button:active,
   .floral-corner {
     display: none !important;
   }
+}
+
+
+/* ============================================================
+   MUSIC TOGGLE BUTTON — Floating
+   ============================================================ */
+.music-toggle {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.9);
+  color: var(--navy-dark);
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.2s;
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-toggle:hover {
+  transform: scale(1.1);
+}
+
+.music-toggle.playing {
+  animation: musicPulse 2s ease-in-out infinite;
+}
+
+.music-toggle.muted {
+  animation: none;
+  opacity: 0.6;
+}
+
+.music-toggle.muted::after {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 24px;
+  background: var(--navy-dark);
+  transform: rotate(45deg);
+}
+
+@keyframes musicPulse {
+  0%, 100% { box-shadow: 0 4px 16px rgba(201, 169, 110, 0.3); }
+  50% { box-shadow: 0 4px 24px rgba(201, 169, 110, 0.6); }
 }

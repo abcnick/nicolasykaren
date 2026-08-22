@@ -183,11 +183,11 @@
    * @param {Object} guest - Guest data from API
    */
   function showContentSections(guest) {
-    // Show header
-    var header = document.querySelector('header');
-    if (header) header.style.display = '';
-    var logoContainer = document.getElementById('logo-container');
-    if (logoContainer) logoContainer.style.display = '';
+    // Keep header hidden — the content speaks for itself
+    // var header = document.querySelector('header');
+    // if (header) header.style.display = '';
+    // var logoContainer = document.getElementById('logo-container');
+    // if (logoContainer) logoContainer.style.display = '';
 
     // Remove envelope-active class so header can show
     document.body.classList.remove('envelope-active');
@@ -250,6 +250,19 @@
     document.querySelectorAll('.reveal-on-scroll').forEach(function(el) {
       observer.observe(el);
     });
+
+    // Immediately reveal sections that are already in viewport
+    document.querySelectorAll('.reveal-on-scroll').forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.85) {
+        el.classList.add('revealed');
+      }
+    });
+
+    // Start background music
+    if (window.Music && typeof window.Music.start === 'function') {
+      window.Music.start();
+    }
   }
 
   /**
@@ -318,6 +331,11 @@
       envelopeScreen.style.display = 'flex';
     } else if (envelopeWrapper) {
       envelopeWrapper.style.display = 'block';
+    }
+
+    // Initialize music player (button created but hidden until envelope opens)
+    if (window.Music && typeof window.Music.init === 'function') {
+      window.Music.init();
     }
 
     // Initialize envelope: when it opens, fetch guest data
