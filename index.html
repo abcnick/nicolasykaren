@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen & Nicolas — Nuestra Boda</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/envelope.css">
+</head>
+<body>
+
+    <!-- Header / Logo -->
+    <header>
+        <div id="logo-container"></div>
+    </header>
+
+    <!-- Envelope Animation -->
+    <div class="envelope-wrapper" style="display:none;">
+        <div class="envelope-back"></div>
+        <div class="envelope-flap"></div>
+        <div class="card">
+            <div class="card-content" style="display:none;">
+                <p id="couple-greeting"></p>
+                <h2 id="guest-greeting"></h2>
+                <p id="ticket-count"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error Page -->
+    <div id="error-page" style="display:none;">
+        <p id="error-message"></p>
+        <button id="retry-btn" style="display:none;">Intentar de nuevo</button>
+    </div>
+
+    <!-- Countdown Section -->
+    <section id="countdown-section">
+        <h2>Cuenta Regresiva</h2>
+        <div class="countdown-display">
+            <div class="countdown-unit">
+                <span id="countdown-days">00</span>
+                <label>Días</label>
+            </div>
+            <div class="countdown-unit">
+                <span id="countdown-hours">00</span>
+                <label>Horas</label>
+            </div>
+            <div class="countdown-unit">
+                <span id="countdown-minutes">00</span>
+                <label>Minutos</label>
+            </div>
+            <div class="countdown-unit">
+                <span id="countdown-seconds">00</span>
+                <label>Segundos</label>
+            </div>
+        </div>
+        <p id="countdown-message"></p>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="event-details-section">
+        <h2>Detalles del Evento</h2>
+
+        <!-- Ceremony -->
+        <div class="ceremony-details">
+            <h3>Ceremonia</h3>
+            <p id="ceremony-date"></p>
+            <p id="ceremony-venue"></p>
+            <p id="ceremony-address"></p>
+            <a id="ceremony-map-link" href="#" target="_blank" rel="noopener noreferrer">Ver en Google Maps</a>
+        </div>
+
+        <!-- Itinerary -->
+        <div id="itinerary-section">
+            <h3>Itinerario</h3>
+            <ul id="itinerary-list"></ul>
+        </div>
+
+        <!-- Reception -->
+        <div class="reception-details">
+            <h3>Recepción</h3>
+            <p id="reception-venue"></p>
+            <p id="reception-address"></p>
+            <p id="reception-time"></p>
+        </div>
+    </section>
+
+    <!-- Photos Section -->
+    <section id="photos-section">
+        <h2>Fotos</h2>
+        <div id="photos-grid"></div>
+    </section>
+
+    <!-- Messages Section -->
+    <section id="messages-section">
+        <h2>Mensajes</h2>
+        <div id="messages-container"></div>
+    </section>
+
+    <!-- Dress Code Section -->
+    <section id="dresscode-section">
+        <h2>Código de Vestimenta</h2>
+        <p id="dresscode-text"></p>
+        <div id="dresscode-colors"></div>
+    </section>
+
+    <!-- Gift Section -->
+    <section id="gift-section">
+        <h2 id="gift-heading"></h2>
+        <p id="gift-message"></p>
+        <div id="gift-bank-details">
+            <p><strong>Banco:</strong> <span id="gift-bank-name"></span></p>
+            <p><strong>Titular:</strong> <span id="gift-account-holder"></span></p>
+            <p><strong>Cuenta:</strong> <span id="gift-account-number"></span></p>
+        </div>
+        <a id="gift-payment-link" href="#" target="_blank" rel="noopener noreferrer">Enlace de pago</a>
+        <p id="gift-instructions"></p>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp-section">
+        <h2>Confirmar Asistencia</h2>
+
+        <form id="rsvp-form" onsubmit="event.preventDefault(); RSVP.submit();">
+            <div class="form-group">
+                <label for="rsvp-attendance">¿Cuántos asistirán?</label>
+                <select id="rsvp-attendance">
+                    <option value="" disabled selected>Seleccionar...</option>
+                </select>
+                <span id="rsvp-attendance-error" class="error-message" style="display:none;"></span>
+            </div>
+
+            <div id="attendee-names-container" style="display:none;"></div>
+            <span id="attendee-names-error" class="error-message" style="display:none;"></span>
+
+            <div class="form-group">
+                <label for="rsvp-phone">Teléfono</label>
+                <input type="tel" id="rsvp-phone" placeholder="+573001234567">
+                <span id="rsvp-phone-error" class="error-message" style="display:none;"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="rsvp-message">Mensaje para los novios (opcional)</label>
+                <textarea id="rsvp-message" maxlength="500" rows="3" placeholder="Escribe un mensaje..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary">Enviar Confirmación</button>
+        </form>
+
+        <div id="rsvp-confirmation" style="display:none;"></div>
+
+        <div id="rsvp-error" style="display:none;">
+            <p id="rsvp-error-message"></p>
+            <button id="rsvp-retry-btn">Intentar de nuevo</button>
+        </div>
+    </section>
+
+    <!-- Scripts (in correct dependency order) -->
+    <script src="config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/envelope.js"></script>
+    <script src="js/countdown.js"></script>
+    <script src="js/guest.js"></script>
+    <script src="js/event-details.js"></script>
+    <script src="js/photos.js"></script>
+    <script src="js/messages.js"></script>
+    <script src="js/dresscode.js"></script>
+    <script src="js/gift.js"></script>
+    <script src="js/logo.js"></script>
+    <script src="js/rsvp.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // GuestPage.init() handles URL parsing, envelope display, and API fetch
+        // It's auto-initialized in guest.js on DOMContentLoaded
+
+        // Initialize content sections that read from CONFIG
+        if (typeof CONFIG !== 'undefined' && CONFIG.wedding && CONFIG.wedding.date) {
+            Countdown.start(CONFIG.wedding.date);
+        }
+        EventDetails.init();
+        Photos.init();
+        Messages.init();
+        DressCode.init();
+        Gift.init();
+        Logo.init();
+
+        // RSVP is initialized after guest data is loaded (handled in guest.js)
+    });
+    </script>
+
+</body>
+</html>

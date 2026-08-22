@@ -1,0 +1,165 @@
+/* Animated card envelope styles & keyframes */
+
+/* ==========================================================================
+   Envelope Animation Component
+   States: closed (default), opening (animation plays), open (final)
+   Total animation duration: 2 seconds (1s flap + 1s card)
+   ========================================================================== */
+
+/* Container — centers the envelope and provides 3D perspective */
+.envelope-wrapper {
+  position: relative;
+  width: 90vw;
+  max-width: 320px;
+  height: 220px;
+  margin: 2rem auto;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+/* Envelope body — the main rectangular shape */
+.envelope-back {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  background: linear-gradient(135deg, #f5e6d3, #f0d9c0);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 2;
+}
+
+/* Triangular flap — rotates open on X axis */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, #e8d4b8, #f0d9c0);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  z-index: 3;
+  transition: z-index 0s;
+}
+
+/* Invitation card — hidden inside, slides out upward */
+.card {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 90%;
+  height: 80%;
+  background: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+/* Card content is hidden until envelope opens */
+.card .card-content {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* ==========================================================================
+   Keyframe Animations
+   ========================================================================== */
+
+/* Flap opens by rotating backward (up and over) */
+@keyframes flapOpen {
+  0% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    transform: rotateX(-180deg);
+  }
+}
+
+/* Card slides out from the envelope upward */
+@keyframes cardSlideOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-60%);
+  }
+}
+
+/* ==========================================================================
+   Opening State — animation plays when .opening class is added by JS
+   ========================================================================== */
+
+.envelope-wrapper.opening .envelope-flap {
+  animation: flapOpen 1s ease-in-out forwards;
+  z-index: 0;
+}
+
+.envelope-wrapper.opening .card {
+  animation: cardSlideOut 1s ease-in-out 1s forwards;
+}
+
+.envelope-wrapper.opening .card .card-content {
+  opacity: 1;
+  transition: opacity 0.4s ease 1.5s;
+}
+
+/* ==========================================================================
+   Open State — final position after animation completes
+   ========================================================================== */
+
+.envelope-wrapper.open .envelope-flap {
+  transform: rotateX(-180deg);
+  z-index: 0;
+}
+
+.envelope-wrapper.open .card {
+  transform: translateY(-60%);
+}
+
+.envelope-wrapper.open .card .card-content {
+  opacity: 1;
+}
+
+/* Remove cursor pointer once open */
+.envelope-wrapper.open {
+  cursor: default;
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+/* Small phones */
+@media (max-width: 360px) {
+  .envelope-wrapper {
+    width: 85vw;
+    max-width: 280px;
+    height: 190px;
+  }
+}
+
+/* Tablets and larger */
+@media (min-width: 768px) {
+  .envelope-wrapper {
+    max-width: 380px;
+    height: 260px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .envelope-wrapper {
+    max-width: 400px;
+    height: 280px;
+  }
+}

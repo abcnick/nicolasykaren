@@ -1,0 +1,515 @@
+/* Main global styles — responsive layout, typography, base components */
+
+/* ============================================================
+   1. RESET & BOX SIZING
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   2. BASE STYLES (Mobile-first)
+   ============================================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ============================================================
+   3. TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+  font-weight: 600;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+a {
+  color: #8E44AD;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #6C3483;
+}
+
+/* ============================================================
+   4. LAYOUT — CONTAINER
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* ============================================================
+   5. SECTIONS — Mobile-first vertical stack
+   ============================================================ */
+section {
+  padding: 2rem 0;
+}
+
+.section-header,
+.section-envelope,
+.section-greeting,
+.section-countdown,
+.section-event-details,
+.section-itinerary,
+.section-photos,
+.section-dress-code,
+.section-messages,
+.section-gift,
+.section-rsvp {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================================
+   6. HEADER / LOGO
+   ============================================================ */
+.site-header {
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.site-header img {
+  max-width: 200px;
+  width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   7. RESPONSIVE IMAGES
+   ============================================================ */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ============================================================
+   8. PHOTOS GRID
+   ============================================================ */
+.photos-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.photos-grid img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* ============================================================
+   9. DRESS CODE — COLOR SWATCHES
+   ============================================================ */
+.color-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.color-swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.color-swatch__square {
+  width: 48px;
+  height: 48px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.color-swatch__label {
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ============================================================
+   10. ITINERARY TIMELINE
+   ============================================================ */
+.itinerary-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.itinerary-timeline li {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.itinerary-timeline li:last-child {
+  border-bottom: none;
+}
+
+.itinerary-time {
+  font-weight: 600;
+  white-space: nowrap;
+  min-width: 5rem;
+}
+
+/* ============================================================
+   11. FORMS — Mobile-first
+   ============================================================ */
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-height: 44px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #8E44AD;
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.15);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+/* ============================================================
+   12. BUTTONS & TOUCH TARGETS
+   ============================================================ */
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background-color: #8E44AD;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #7D3C98;
+}
+
+.btn-secondary {
+  background-color: #eee;
+  color: #333;
+}
+
+.btn-secondary:hover {
+  background-color: #ddd;
+}
+
+/* Touch targets — ensure all interactive elements meet 44x44 minimum */
+a {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ============================================================
+   13. ACCESSIBILITY — FOCUS VISIBLE
+   ============================================================ */
+:focus-visible {
+  outline: 3px solid #8E44AD;
+  outline-offset: 2px;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #8E44AD;
+  outline-offset: 2px;
+}
+
+/* ============================================================
+   14. UTILITY CLASSES
+   ============================================================ */
+.text-center {
+  text-align: center;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Error messages */
+.error-message {
+  color: #c0392b;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.field-error {
+  border-color: #c0392b !important;
+}
+
+/* Success messages */
+.success-message {
+  color: #27ae60;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   15. COUNTDOWN
+   ============================================================ */
+.countdown {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.countdown__unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 60px;
+}
+
+.countdown__value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.countdown__label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+
+/* ============================================================
+   16. GIFT SECTION
+   ============================================================ */
+.gift-details {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 1.5rem;
+  width: 100%;
+}
+
+/* ============================================================
+   17. MESSAGES SECTION
+   ============================================================ */
+.message-block {
+  margin-bottom: 2rem;
+}
+
+.message-block:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ============================================================
+   18. MEDIA QUERIES — Tablet (768px+)
+   ============================================================ */
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  h1 { font-size: 2.25rem; }
+  h2 { font-size: 1.75rem; }
+  h3 { font-size: 1.5rem; }
+
+  /* Photos grid: 2 columns */
+  .photos-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 0;
+  }
+
+  /* Itinerary multi-column layout */
+  .itinerary-timeline {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Form inputs: appropriate sizing on larger screens */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="password"],
+  select {
+    max-width: 400px;
+  }
+
+  textarea {
+    max-width: 600px;
+  }
+
+  /* Sections get more breathing room */
+  section {
+    padding: 3rem 0;
+  }
+
+  /* Multi-column content areas */
+  .content-columns {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  /* Touch targets can relax slightly on desktop, but remain accessible */
+  a {
+    min-height: auto;
+  }
+}
+
+/* ============================================================
+   19. MEDIA QUERIES — Desktop (1024px+)
+   ============================================================ */
+@media (min-width: 1024px) {
+  /* Photos grid: 3 columns */
+  .photos-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Wider content areas can use 3 columns */
+  .content-columns--wide {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Countdown gets larger */
+  .countdown__value {
+    font-size: 2.5rem;
+  }
+
+  section {
+    padding: 4rem 0;
+  }
+}
+
+/* ============================================================
+   20. MEDIA QUERIES — Large Desktop (1200px+)
+   ============================================================ */
+@media (min-width: 1200px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* ============================================================
+   21. PRINT STYLES (graceful degradation)
+   ============================================================ */
+@media print {
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  .countdown,
+  .section-rsvp,
+  button,
+  .btn {
+    display: none;
+  }
+}
