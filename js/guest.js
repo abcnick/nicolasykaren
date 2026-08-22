@@ -134,17 +134,17 @@
 
     // After a short delay for the greeting to be visible, reveal content sections
     setTimeout(function () {
-      // Fade out the envelope screen
+      // Start showing content FIRST (fading in behind the envelope)
+      showContentSections(guest);
+      
+      // Simultaneously fade out the envelope screen
       var envelopeScreen = document.querySelector('.envelope-screen');
       if (envelopeScreen) {
         envelopeScreen.classList.add('fading-out');
-        // After fadeout completes, hide it and show content
+        // After fadeout completes, fully hide it
         setTimeout(function () {
           envelopeScreen.style.display = 'none';
-          showContentSections(guest);
-        }, 1200);
-      } else {
-        showContentSections(guest);
+        }, 2500);
       }
     }, 1500);
   }

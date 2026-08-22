@@ -58,7 +58,7 @@
   z-index: 2;
 }
 
-/* Envelope body — back/base of the envelope */
+/* Envelope body — the BACK frame (lowest layer) */
 .envelope-back {
   position: absolute;
   top: 0;
@@ -74,37 +74,38 @@
   box-shadow: none;
   border: none;
   z-index: 1;
-  overflow: visible;
 }
 
 .envelope-back::after {
   display: none;
 }
 
-/* Wax seal — on the tip of the flap (bottom center) */
+/* No seal on envelope-back — seal is on the flap */
 .envelope-back::before {
-  content: '';
-  position: absolute;
-  bottom: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 42px;
-  height: 42px;
-  background-image: url('../img/envelope/sobre-sello.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  font-size: 0;
-  color: transparent;
-  z-index: 10;
-  line-height: normal;
-  display: block;
+  display: none;
 }
 
-/* Flap — covers the front, points DOWN, opens by rotating from bottom */
+/* Invitation card — MIDDLE layer, inside the envelope */
+.card {
+  position: absolute;
+  top: 8%;
+  left: 6%;
+  width: 88%;
+  height: 84%;
+  background: linear-gradient(135deg, #fffef9 0%, #faf6ef 50%, #f5f0e6 100%);
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  z-index: 2;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+/* Flap — TOP layer, covers the card, points DOWN */
 .envelope-flap {
   position: absolute;
   top: 0;
@@ -119,7 +120,7 @@
   clip-path: none;
   transform-origin: top center;
   transform: rotateX(0deg);
-  z-index: 3;
+  z-index: 4;
   border: none;
 }
 
@@ -127,56 +128,31 @@
   display: none;
 }
 
-/* Invitation card — hidden behind envelope, slides up when opened */
-.card {
+/* Wax seal — on the flap, at the bottom tip */
+.envelope-flap::before {
+  content: '';
   position: absolute;
-  top: 5%;
-  left: 8%;
-  width: 84%;
-  height: 90%;
-  background: linear-gradient(135deg, #fffef9 0%, #faf6ef 50%, #f5f0e6 100%);
-  border-radius: 10px;
-  box-shadow: 
-    0 4px 20px rgba(0, 0, 0, 0.15),
-    inset 0 0 0 2px rgba(201, 169, 110, 0.3);
-  transform: translateY(0);
-  z-index: 1;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1.2rem;
-  text-align: center;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 36px;
+  height: 36px;
+  background-image: url('../img/envelope/sobre-sello.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  z-index: 5;
 }
 
-/* Floral border decoration on card */
+/* Old card definition removed — using the one above */
+
+/* Card decorations */
 .card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background: linear-gradient(135deg, rgba(201, 169, 110, 0.3), rgba(201, 169, 110, 0.1), rgba(201, 169, 110, 0.3)) border-box;
-  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+  display: none;
 }
 
-/* Corner floral accents on card */
 .card::after {
-  content: '';
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 1px solid rgba(201, 169, 110, 0.15);
-  border-radius: 8px;
-  pointer-events: none;
+  display: none;
 }
 
 /* Card content styling */
@@ -262,12 +238,11 @@
 }
 
 /* ==========================================================================
-   Opening State — animation plays when .opening class is added by JS
+   Opening State — flap rotates UP, card slides UP behind the body
    ========================================================================== */
 
 .envelope-wrapper.opening .envelope-flap {
   animation: flapOpen 0.8s cubic-bezier(0.45, 0, 0.55, 1) forwards;
-  z-index: 0;
 }
 
 .envelope-wrapper.opening .card {
@@ -279,10 +254,7 @@
   transition: opacity 0.5s ease 1.2s;
 }
 
-/* Hide seal during opening */
-.envelope-wrapper.opening .envelope-back::before {
-  animation: fadeOut 0.4s ease forwards;
-}
+/* Hide seal during opening (it's on the flap, goes with it) */
 
 @keyframes fadeOut {
   to { opacity: 0; }
@@ -294,7 +266,6 @@
 
 .envelope-wrapper.open .envelope-flap {
   transform: rotateX(-180deg);
-  z-index: 0;
 }
 
 .envelope-wrapper.open .card {
@@ -306,10 +277,6 @@
   opacity: 1;
 }
 
-.envelope-wrapper.open .envelope-back::before {
-  opacity: 0;
-}
-
 /* Remove cursor pointer once open */
 .envelope-wrapper.open {
   cursor: default;
@@ -319,13 +286,14 @@
    Responsive Design
    ========================================================================== */
 
-/* Envelope screen fade out animation */
+/* Envelope screen fade out animation — slow and smooth */
 .envelope-screen.fading-out {
-  animation: envelopeFadeOut 1.2s ease-in-out forwards;
+  animation: envelopeFadeOut 2.5s ease-in-out forwards;
 }
 
 @keyframes envelopeFadeOut {
   0% { opacity: 1; }
+  30% { opacity: 0.7; }
   100% { opacity: 0; pointer-events: none; }
 }
 
