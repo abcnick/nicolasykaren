@@ -171,6 +171,32 @@
   }
 
   /**
+   * Show a beautiful landing page when no guest parameter is provided.
+   * Hides all invitation content and shows a simple elegant welcome screen.
+   */
+  function showLandingPage() {
+    // Hide envelope, error page, and all content sections
+    var envelopeWrapper = document.querySelector('.envelope-wrapper');
+    var errorPage = document.getElementById('error-page');
+    var header = document.querySelector('header');
+    var sections = document.querySelectorAll('#countdown-section, #event-details-section, #photos-section, #messages-section, #dresscode-section, #gift-section, #rsvp-section');
+
+    if (envelopeWrapper) envelopeWrapper.style.display = 'none';
+    if (errorPage) errorPage.style.display = 'none';
+    if (header) header.style.display = 'none';
+
+    sections.forEach(function (section) {
+      section.style.display = 'none';
+    });
+
+    // Show the landing page
+    var landingPage = document.getElementById('landing-page');
+    if (landingPage) {
+      landingPage.style.display = 'flex';
+    }
+  }
+
+  /**
    * Initialize the guest page.
    * Parses URL parameters and sets up the page flow.
    */
@@ -178,9 +204,9 @@
     var params = new URLSearchParams(window.location.search);
     var guestId = params.get('guest');
 
-    // If guest parameter is missing or empty → show error immediately
+    // If guest parameter is missing or empty → show landing page
     if (!guestId || guestId.trim() === '') {
-      showErrorPage(ERROR_INVALID_LINK);
+      showLandingPage();
       return;
     }
 

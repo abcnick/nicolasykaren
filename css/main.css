@@ -513,3 +513,132 @@ textarea:focus-visible {
     display: none;
   }
 }
+
+/* ============================================================
+   22. LANDING PAGE (no guest parameter)
+   ============================================================ */
+#landing-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f4f0 0%, #ede7e0 50%, #f5efe8 100%);
+  text-align: center;
+  padding: 2rem;
+}
+
+.landing-content {
+  max-width: 500px;
+}
+
+.landing-pretext {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: #8E44AD;
+  margin-bottom: 0.5rem;
+}
+
+.landing-names {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #2C3E50;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.landing-amp {
+  display: block;
+  font-size: 1.5rem;
+  color: #8E44AD;
+  margin: 0.25rem 0;
+}
+
+.landing-divider {
+  width: 60px;
+  height: 2px;
+  background: #8E44AD;
+  margin: 1.5rem auto;
+}
+
+.landing-message {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+  .landing-names {
+    font-size: 4rem;
+  }
+  .landing-amp {
+    display: inline;
+    font-size: 2.5rem;
+    margin: 0 0.3rem;
+  }
+}
+
+/* ============================================================
+   22. LANDING PAGE (no guest parameter)
+   ============================================================ */
+#landing-page {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fdf6f0 0%, #f5e6d3 50%, #ede0d4 100%);
+}
+
+.landing-content {
+  max-width: 500px;
+}
+
+.landing-pretext {
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #8E44AD;
+  margin-bottom: 0.5rem;
+}
+
+.landing-names {
+  font-size: 3rem;
+  font-weight: 300;
+  color: #2C3E50;
+  margin: 0.5rem 0;
+  line-height: 1.2;
+}
+
+.landing-amp {
+  display: block;
+  font-size: 1.5rem;
+  color: #8E44AD;
+  margin: 0.25rem 0;
+}
+
+.landing-divider {
+  width: 60px;
+  height: 2px;
+  background: #8E44AD;
+  margin: 1.5rem auto;
+}
+
+.landing-message {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+@media (min-width: 768px) {
+  .landing-names {
+    font-size: 4rem;
+  }
+  .landing-amp {
+    display: inline;
+    font-size: 2.5rem;
+    margin: 0 0.5rem;
+  }
+}
