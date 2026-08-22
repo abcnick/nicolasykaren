@@ -4,7 +4,7 @@
    Ravenclaw-inspired: Navy blue, bronze/gold accents
    ========================================================================== */
 
-/* Envelope Screen — Full viewport, NO background image (body handles it) */
+/* Envelope Screen — Full viewport, solid dark navy (no background image) */
 .envelope-screen {
   display: none;
   flex-direction: column;
@@ -14,8 +14,11 @@
   min-height: 100dvh;
   width: 100%;
   padding: 0;
-  background: transparent;
-  position: relative;
+  background: #0a1628;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
   overflow: hidden;
 }
 
@@ -43,25 +46,25 @@
   100% { opacity: 1; }
 }
 
-/* Container — centers the envelope with 3D perspective */
+/* Container — centers the envelope */
 .envelope-wrapper {
   position: relative;
-  width: 80vw;
-  max-width: 320px;
-  aspect-ratio: 5/4;
+  width: 82vw;
+  max-width: 340px;
+  aspect-ratio: 16/10;
   margin: 0 auto;
   perspective: 1200px;
   cursor: pointer;
   z-index: 2;
 }
 
-/* Envelope body — uses sobre-cuerpo.png */
+/* Envelope body — back/base of the envelope */
 .envelope-back {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 62%;
+  height: 100%;
   background-image: url('../img/envelope/sobre-cuerpo.png');
   background-size: 100% 100%;
   background-position: center;
@@ -70,24 +73,23 @@
   border-radius: 0;
   box-shadow: none;
   border: none;
-  z-index: 2;
+  z-index: 1;
   overflow: visible;
 }
 
-/* Remove the CSS-only styling that conflicts with the image */
 .envelope-back::after {
   display: none;
 }
 
-/* Wax seal — at junction of flap tip and body top */
+/* Wax seal — on the tip of the flap (bottom center) */
 .envelope-back::before {
   content: '';
   position: absolute;
-  top: -18px;
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   background-image: url('../img/envelope/sobre-sello.png');
   background-size: contain;
   background-repeat: no-repeat;
@@ -102,16 +104,16 @@
   display: block;
 }
 
-/* Flap — bottom of flap touches top of body */
+/* Flap — covers the front, points DOWN, opens by rotating from bottom */
 .envelope-flap {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 40%;
+  height: 100%;
   background-image: url('../img/envelope/sobre-solapa.png');
   background-size: 100% 100%;
-  background-position: center bottom;
+  background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
   clip-path: none;
@@ -121,18 +123,17 @@
   border: none;
 }
 
-/* Remove flap CSS overlay */
 .envelope-flap::after {
   display: none;
 }
 
-/* Invitation card — hidden inside envelope, not peeking */
+/* Invitation card — hidden behind envelope, slides up when opened */
 .card {
   position: absolute;
-  top: 42%;
+  top: 5%;
   left: 8%;
   width: 84%;
-  height: 55%;
+  height: 90%;
   background: linear-gradient(135deg, #fffef9 0%, #faf6ef 50%, #f5f0e6 100%);
   border-radius: 10px;
   box-shadow: 
@@ -248,14 +249,14 @@
   }
 }
 
-/* Card slides out from the envelope upward smoothly */
+/* Card slides UP from behind the envelope */
 @keyframes cardSlideOut {
   0% {
     transform: translateY(0);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
   100% {
-    transform: translateY(-65%);
+    transform: translateY(-70%);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
   }
 }
@@ -297,7 +298,7 @@
 }
 
 .envelope-wrapper.open .card {
-  transform: translateY(-65%);
+  transform: translateY(-70%);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
@@ -332,27 +333,27 @@
 @media (max-width: 360px) {
   .envelope-wrapper {
     width: 78vw;
-    max-width: 260px;
+    max-width: 280px;
   }
 }
 
 /* Tablets and larger */
 @media (min-width: 768px) {
   .envelope-wrapper {
-    max-width: 380px;
+    max-width: 400px;
   }
 
   .envelope-back::before {
-    width: 48px;
-    height: 48px;
-    top: -22px;
+    width: 52px;
+    height: 52px;
+    bottom: -18px;
   }
 }
 
 /* Desktop */
 @media (min-width: 1024px) {
   .envelope-wrapper {
-    max-width: 420px;
+    max-width: 450px;
   }
 }
 
