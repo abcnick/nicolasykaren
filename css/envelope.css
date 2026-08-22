@@ -85,7 +85,7 @@
   display: none;
 }
 
-/* Invitation card — MIDDLE layer, inside the envelope */
+/* Invitation card — HIDDEN behind envelope body initially */
 .card {
   position: absolute;
   top: 8%;
@@ -96,7 +96,7 @@
   border-radius: 6px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   transform: translateY(0);
-  z-index: 2;
+  z-index: 0; /* BEHIND envelope-back (z-index 1) — hidden initially */
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -225,15 +225,19 @@
   }
 }
 
-/* Card slides UP from behind the envelope */
+/* Card slides UP and moves to FRONT (above everything) */
 @keyframes cardSlideOut {
   0% {
     transform: translateY(0);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    z-index: 0;
+  }
+  1% {
+    z-index: 10; /* Jump to front immediately when animation starts */
   }
   100% {
-    transform: translateY(-70%);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-75%);
+    z-index: 10;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
   }
 }
 
@@ -246,12 +250,12 @@
 }
 
 .envelope-wrapper.opening .card {
-  animation: cardSlideOut 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s forwards;
+  animation: cardSlideOut 1s cubic-bezier(0.34, 1.2, 0.64, 1) 0.8s forwards;
 }
 
 .envelope-wrapper.opening .card .card-content {
   opacity: 1;
-  transition: opacity 0.5s ease 1.2s;
+  transition: opacity 0.5s ease 1.5s;
 }
 
 /* Hide seal during opening (it's on the flap, goes with it) */
@@ -269,8 +273,9 @@
 }
 
 .envelope-wrapper.open .card {
-  transform: translateY(-70%);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-75%);
+  z-index: 10;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
 }
 
 .envelope-wrapper.open .card .card-content {
