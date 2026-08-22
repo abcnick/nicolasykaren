@@ -57,9 +57,9 @@ const CONFIG = {
   ],
 
   photos: [
-    { src: "img/photos/photo1.jpg", alt: "Karen y Nicolas" },
-    { src: "img/photos/photo2.jpg", alt: "Karen y Nicolas en el parque" },
-    { src: "img/photos/photo3.jpg", alt: "Karen y Nicolas - sesión de fotos" }
+    { src: "logo final.JPG", alt: "Karen y Nicolas" },
+    { src: "logo final.JPG", alt: "Karen y Nicolas en el parque" },
+    { src: "logo final.JPG", alt: "Karen y Nicolas - sesión de fotos" }
   ],
 
   logo: {
@@ -68,10 +68,10 @@ const CONFIG = {
   },
 
   api: {
-    baseUrl: "https://script.google.com/macros/s/DEPLOYMENT_ID/exec" // TODO: Replace with actual Apps Script deployment URL
+    baseUrl: "https://script.google.com/macros/s/AKfycbyIntdkwOwugY9PvfSyVR7_WWh40TPdn_hRcDroDM4TKyCRlZhzF8uobkO92WA8IqDe/exec" // TODO: Replace with actual Apps Script deployment URL
   },
 
   admin: {
-    passwordHash: "placeholder-sha256-hash" // TODO: Replace with SHA-256 hash of your admin password
+    passwordHash: "40dd46400b93ee50bc1e23c7f4cfb858a68741054cb2460756bb9e07bd20ba5f" // TODO: Replace with SHA-256 hash of your admin password
   }
 };
