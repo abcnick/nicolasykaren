@@ -10,7 +10,7 @@
 <body>
 
     <!-- Header / Logo -->
-    <header>
+    <header style="display:none;">
         <div id="logo-container"></div>
     </header>
 
@@ -24,17 +24,20 @@
         </div>
     </div>
 
-    <!-- Envelope Animation -->
-    <div class="envelope-wrapper" style="display:none;">
-        <div class="envelope-back"></div>
-        <div class="envelope-flap"></div>
-        <div class="card">
-            <div class="card-content" style="display:none;">
-                <p id="couple-greeting"></p>
-                <h2 id="guest-greeting"></h2>
-                <p id="ticket-count"></p>
+    <!-- Envelope Screen (full viewport, centered) -->
+    <div class="envelope-screen" style="display:none;">
+        <div class="envelope-wrapper">
+            <div class="envelope-back"></div>
+            <div class="envelope-flap"></div>
+            <div class="card">
+                <div class="card-content" style="display:none;">
+                    <p id="couple-greeting"></p>
+                    <h2 id="guest-greeting"></h2>
+                    <p id="ticket-count"></p>
+                </div>
             </div>
         </div>
+        <p class="envelope-hint">Toca para abrir</p>
     </div>
 
     <!-- Error Page -->
@@ -43,8 +46,11 @@
         <button id="retry-btn" style="display:none;">Intentar de nuevo</button>
     </div>
 
+    <!-- Invitation Content Wrapper (hidden until guest data loads) -->
+    <div class="invitation-content" style="display:none; opacity:0;">
+
     <!-- Countdown Section -->
-    <section id="countdown-section" style="display:none;">
+    <section id="countdown-section">
         <h2>Cuenta Regresiva</h2>
         <div class="countdown-display">
             <div class="countdown-unit">
@@ -68,7 +74,7 @@
     </section>
 
     <!-- Event Details Section -->
-    <section id="event-details-section" style="display:none;">
+    <section id="event-details-section">
         <h2>Detalles del Evento</h2>
 
         <!-- Ceremony -->
@@ -96,26 +102,26 @@
     </section>
 
     <!-- Photos Section -->
-    <section id="photos-section" style="display:none;">
+    <section id="photos-section">
         <h2>Fotos</h2>
         <div id="photos-grid"></div>
     </section>
 
     <!-- Messages Section -->
-    <section id="messages-section" style="display:none;">
+    <section id="messages-section">
         <h2>Mensajes</h2>
         <div id="messages-container"></div>
     </section>
 
     <!-- Dress Code Section -->
-    <section id="dresscode-section" style="display:none;">
+    <section id="dresscode-section">
         <h2>Código de Vestimenta</h2>
         <p id="dresscode-text"></p>
         <div id="dresscode-colors"></div>
     </section>
 
     <!-- Gift Section -->
-    <section id="gift-section" style="display:none;">
+    <section id="gift-section">
         <h2 id="gift-heading"></h2>
         <p id="gift-message"></p>
         <div id="gift-bank-details">
@@ -128,7 +134,7 @@
     </section>
 
     <!-- RSVP Section -->
-    <section id="rsvp-section" style="display:none;">
+    <section id="rsvp-section">
         <h2>Confirmar Asistencia</h2>
 
         <form id="rsvp-form" onsubmit="event.preventDefault(); RSVP.submit();">
@@ -165,6 +171,8 @@
         </div>
     </section>
 
+    </div><!-- /.invitation-content -->
+
     <!-- Scripts (in correct dependency order) -->
     <script src="config.js"></script>
     <script src="js/api.js"></script>
@@ -182,26 +190,11 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // GuestPage.init() handles URL parsing, envelope display, and API fetch
-        // It's auto-initialized in guest.js on DOMContentLoaded
-
-        // Only show content sections if there's a guest parameter
-        var params = new URLSearchParams(window.location.search);
-        var guestId = params.get('guest');
-        if (guestId && guestId.trim() !== '') {
-            // Initialize content sections that read from CONFIG
-            if (typeof CONFIG !== 'undefined' && CONFIG.wedding && CONFIG.wedding.date) {
-                Countdown.start(CONFIG.wedding.date);
-            }
-            EventDetails.init();
-            Photos.init();
-            Messages.init();
-            DressCode.init();
-            Gift.init();
-            Logo.init();
-        }
-
-        // RSVP is initialized after guest data is loaded (handled in guest.js)
+        // GuestPage.init() handles everything:
+        // - No guest param → landing page
+        // - Guest param → envelope shown, wait for click, then fetch + render
+        // Content sections are initialized ONLY after guest data loads (inside guest.js)
+        // Do NOT initialize content sections here — guest.js handles the timing
     });
     </script>
 

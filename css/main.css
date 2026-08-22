@@ -19,28 +19,29 @@ html {
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Georgia', 'Times New Roman', serif;
   font-size: 16px;
   line-height: 1.6;
-  color: #333;
-  background-color: #fff;
+  color: #3d3d3d;
+  background-color: #fdfbf9;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
 
 /* ============================================================
-   3. TYPOGRAPHY
+   3. TYPOGRAPHY — Elegant wedding style
    ============================================================ */
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 0.5em;
   line-height: 1.3;
-  font-weight: 600;
+  font-weight: 300;
+  color: #2C3E50;
+  font-family: 'Georgia', serif;
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.5rem; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.6rem; letter-spacing: 0.02em; }
 h3 { font-size: 1.25rem; }
 h4 { font-size: 1.1rem; }
 
@@ -51,12 +52,13 @@ p {
 
 a {
   color: #8E44AD;
-  text-decoration: underline;
+  text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
   color: #6C3483;
+  text-decoration: underline;
 }
 
 /* ============================================================
@@ -64,49 +66,60 @@ a:hover {
    ============================================================ */
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 /* ============================================================
-   5. SECTIONS — Mobile-first vertical stack
+   5. SECTIONS — Elegant spacing with separators
    ============================================================ */
 section {
-  padding: 2rem 0;
+  padding: 3rem 1.5rem;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.section-header,
-.section-envelope,
-.section-greeting,
-.section-countdown,
-.section-event-details,
-.section-itinerary,
-.section-photos,
-.section-dress-code,
-.section-messages,
-.section-gift,
-.section-rsvp {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+section + section::before {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
+  margin: 0 auto 3rem auto;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+section h2 {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #5a4a3a;
+  margin-bottom: 1.5rem;
 }
 
 /* ============================================================
    6. HEADER / LOGO
    ============================================================ */
-.site-header {
+header {
   text-align: center;
-  padding: 1.5rem 1rem;
+  padding: 2rem 1rem 1rem;
 }
 
-.site-header img {
-  max-width: 200px;
+header img,
+#logo-container img {
+  max-width: 180px;
   width: 100%;
   height: auto;
+  margin: 0 auto;
 }
 
 /* ============================================================
@@ -119,30 +132,191 @@ img {
 }
 
 /* ============================================================
-   8. PHOTOS GRID
+   8. ENVELOPE SCREEN — Full viewport centered
    ============================================================ */
-.photos-grid {
+.envelope-screen {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #fdf6f0 0%, #f5e6d3 50%, #ede0d4 100%);
+  position: relative;
+}
+
+.envelope-hint {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #8a7a6a;
+  letter-spacing: 0.05em;
+  animation: pulseHint 2s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* ============================================================
+   9. INVITATION CONTENT WRAPPER — Fade-in transition
+   ============================================================ */
+.invitation-content {
+  transition: opacity 1.2s ease-in-out;
+}
+
+/* ============================================================
+   10. COUNTDOWN — Large numbers, small labels
+   ============================================================ */
+.countdown-display {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+
+.countdown-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 70px;
+  background: linear-gradient(135deg, #f8f4f0, #fff);
+  border: 1px solid #e8ddd4;
+  border-radius: 12px;
+  padding: 1.2rem 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.countdown-unit span {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #8E44AD;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.countdown-unit label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8a7a6a;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
+#countdown-message {
+  color: #8a7a6a;
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+/* ============================================================
+   11. EVENT DETAILS
+   ============================================================ */
+.ceremony-details,
+.reception-details {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #ede0d4;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ceremony-details h3,
+.reception-details h3 {
+  color: #8E44AD;
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.ceremony-details p,
+.reception-details p {
+  margin-bottom: 0.4rem;
+  color: #555;
+}
+
+#ceremony-map-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.5rem 1.2rem;
+  background: #8E44AD;
+  color: #fff;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  min-height: 44px;
+  line-height: 44px;
+  padding: 0 1.2rem;
+  transition: background 0.2s;
+}
+
+#ceremony-map-link:hover {
+  background: #7D3C98;
+  text-decoration: none;
+}
+
+/* Itinerary */
+#itinerary-section {
+  margin-top: 1.5rem;
+}
+
+#itinerary-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  text-align: left;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#itinerary-list li {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f0e8e0;
+}
+
+#itinerary-list li:last-child {
+  border-bottom: none;
+}
+
+/* ============================================================
+   12. PHOTOS GRID
+   ============================================================ */
+#photos-section {
+  padding-bottom: 2rem;
+}
+
+#photos-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
   width: 100%;
-  padding: 0 1rem;
 }
 
-.photos-grid img {
+#photos-grid img {
   width: 100%;
   height: auto;
-  border-radius: 4px;
+  border-radius: 8px;
   object-fit: cover;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* ============================================================
-   9. DRESS CODE — COLOR SWATCHES
+   13. DRESS CODE — COLOR SWATCHES
    ============================================================ */
-.color-swatches {
+#dresscode-text {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+#dresscode-colors {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.2rem;
   justify-content: center;
   padding: 1rem 0;
 }
@@ -155,53 +329,134 @@ img {
 }
 
 .color-swatch__square {
-  width: 48px;
-  height: 48px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .color-swatch__label {
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-align: center;
+  color: #666;
 }
 
 /* ============================================================
-   10. ITINERARY TIMELINE
+   14. MESSAGES SECTION
    ============================================================ */
-.itinerary-timeline {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
+#messages-container {
+  text-align: left;
+  max-width: 550px;
+  margin: 0 auto;
 }
 
-.itinerary-timeline li {
-  display: flex;
-  gap: 1rem;
-  padding: 0.75rem 0;
-  border-bottom: 1px solid #eee;
+.message-block {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  border-left: 3px solid #c9a96e;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.itinerary-timeline li:last-child {
-  border-bottom: none;
+.message-block h3 {
+  color: #5a4a3a;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
-.itinerary-time {
-  font-weight: 600;
-  white-space: nowrap;
-  min-width: 5rem;
+.message-block p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 0;
 }
 
 /* ============================================================
-   11. FORMS — Mobile-first
+   15. GIFT SECTION
    ============================================================ */
-input,
-select,
-textarea,
-button {
-  font-family: inherit;
-  font-size: 1rem;
+#gift-section {
+  padding-bottom: 3rem;
+}
+
+#gift-message {
+  color: #555;
+  max-width: 500px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.7;
+}
+
+#gift-bank-details {
+  background: #fff;
+  border: 1px solid #ede0d4;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 400px;
+  margin: 0 auto 1.5rem;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+#gift-bank-details p {
+  margin-bottom: 0.5rem;
+  color: #555;
+}
+
+#gift-bank-details strong {
+  color: #3d3d3d;
+}
+
+#gift-payment-link {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #c9a96e, #b8944d);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+  min-height: 44px;
+  line-height: 1.6;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(201, 169, 110, 0.3);
+}
+
+#gift-payment-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(201, 169, 110, 0.4);
+  text-decoration: none;
+}
+
+#gift-instructions {
+  color: #8a7a6a;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+/* ============================================================
+   16. RSVP SECTION
+   ============================================================ */
+#rsvp-section {
+  background: linear-gradient(180deg, #fdfbf9, #f8f4f0);
+  padding: 3rem 1.5rem 4rem;
+  border-radius: 20px 20px 0 0;
+  margin-top: 1rem;
+}
+
+#rsvp-form {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #5a4a3a;
+  font-size: 0.9rem;
 }
 
 input[type="text"],
@@ -212,10 +467,13 @@ input[type="password"],
 select,
 textarea {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #ddd4ca;
+  border-radius: 8px;
   min-height: 44px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -224,7 +482,7 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: #8E44AD;
-  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.15);
+  box-shadow: 0 0 0 3px rgba(142, 68, 173, 0.1);
 }
 
 textarea {
@@ -232,18 +490,29 @@ textarea {
   min-height: 100px;
 }
 
-label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
+#rsvp-form .btn-primary {
+  width: 100%;
+  margin-top: 0.5rem;
 }
 
-.form-group {
-  margin-bottom: 1.25rem;
+#rsvp-confirmation {
+  text-align: center;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #d4edda;
+}
+
+#rsvp-error {
+  text-align: center;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #f5c6cb;
 }
 
 /* ============================================================
-   12. BUTTONS & TOUCH TARGETS
+   17. BUTTONS & TOUCH TARGETS
    ============================================================ */
 button,
 .btn {
@@ -252,11 +521,13 @@ button,
   justify-content: center;
   min-width: 44px;
   min-height: 44px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.85rem 2rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   font-weight: 500;
+  font-family: inherit;
+  font-size: 1rem;
   text-align: center;
   text-decoration: none;
   transition: background-color 0.2s ease, transform 0.1s ease;
@@ -268,49 +539,58 @@ button:active,
 }
 
 .btn-primary {
-  background-color: #8E44AD;
+  background: linear-gradient(135deg, #8E44AD, #7D3C98);
   color: #fff;
+  box-shadow: 0 2px 8px rgba(142, 68, 173, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: #7D3C98;
+  background: linear-gradient(135deg, #7D3C98, #6C3483);
+  box-shadow: 0 4px 12px rgba(142, 68, 173, 0.35);
 }
 
 .btn-secondary {
-  background-color: #eee;
-  color: #333;
+  background-color: #f0e8e0;
+  color: #5a4a3a;
 }
 
 .btn-secondary:hover {
-  background-color: #ddd;
-}
-
-/* Touch targets — ensure all interactive elements meet 44x44 minimum */
-a {
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
+  background-color: #e8ddd4;
 }
 
 /* ============================================================
-   13. ACCESSIBILITY — FOCUS VISIBLE
+   18. ERROR PAGE — starts hidden via inline style, JS sets display:flex
+   ============================================================ */
+#error-page {
+  min-height: 100vh;
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fdf6f0 0%, #f5e6d3 50%, #ede0d4 100%);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#error-message {
+  font-size: 1.1rem;
+  color: #5a4a3a;
+  margin-bottom: 1.5rem;
+}
+
+#retry-btn {
+  background: #8E44AD;
+  color: #fff;
+}
+
+/* ============================================================
+   19. ACCESSIBILITY — FOCUS VISIBLE
    ============================================================ */
 :focus-visible {
   outline: 3px solid #8E44AD;
   outline-offset: 2px;
 }
 
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #8E44AD;
-  outline-offset: 2px;
-}
-
 /* ============================================================
-   14. UTILITY CLASSES
+   20. UTILITY CLASSES
    ============================================================ */
 .text-center {
   text-align: center;
@@ -351,235 +631,50 @@ textarea:focus-visible {
 }
 
 /* ============================================================
-   15. COUNTDOWN
-   ============================================================ */
-.countdown {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-  text-align: center;
-}
-
-.countdown__unit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-width: 60px;
-}
-
-.countdown__value {
-  font-size: 2rem;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.countdown__label {
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #666;
-}
-
-/* ============================================================
-   16. GIFT SECTION
-   ============================================================ */
-.gift-details {
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  padding: 1.5rem;
-  width: 100%;
-}
-
-/* ============================================================
-   17. MESSAGES SECTION
-   ============================================================ */
-.message-block {
-  margin-bottom: 2rem;
-}
-
-.message-block:last-child {
-  margin-bottom: 0;
-}
-
-
-/* ============================================================
-   18. MEDIA QUERIES — Tablet (768px+)
+   21. MEDIA QUERIES — Tablet (768px+)
    ============================================================ */
 @media (min-width: 768px) {
-  .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.4rem; }
+
+  section {
+    padding: 4rem 2rem;
   }
 
-  h1 { font-size: 2.25rem; }
-  h2 { font-size: 1.75rem; }
-  h3 { font-size: 1.5rem; }
+  .countdown-unit span {
+    font-size: 3rem;
+  }
 
-  /* Photos grid: 2 columns */
-  .photos-grid {
+  .countdown-unit {
+    min-width: 90px;
+    padding: 1.5rem 1.2rem;
+  }
+
+  #photos-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    padding: 0;
-  }
-
-  /* Itinerary multi-column layout */
-  .itinerary-timeline {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* Form inputs: appropriate sizing on larger screens */
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"],
-  input[type="number"],
-  input[type="password"],
-  select {
-    max-width: 400px;
-  }
-
-  textarea {
-    max-width: 600px;
-  }
-
-  /* Sections get more breathing room */
-  section {
-    padding: 3rem 0;
-  }
-
-  /* Multi-column content areas */
-  .content-columns {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-  }
-
-  /* Touch targets can relax slightly on desktop, but remain accessible */
-  a {
-    min-height: auto;
   }
 }
 
 /* ============================================================
-   19. MEDIA QUERIES — Desktop (1024px+)
+   22. MEDIA QUERIES — Desktop (1024px+)
    ============================================================ */
 @media (min-width: 1024px) {
-  /* Photos grid: 3 columns */
-  .photos-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .countdown-unit span {
+    font-size: 3.5rem;
   }
 
-  /* Wider content areas can use 3 columns */
-  .content-columns--wide {
+  #photos-grid {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  /* Countdown gets larger */
-  .countdown__value {
-    font-size: 2.5rem;
   }
 
   section {
-    padding: 4rem 0;
+    padding: 5rem 2rem;
   }
 }
 
 /* ============================================================
-   20. MEDIA QUERIES — Large Desktop (1200px+)
-   ============================================================ */
-@media (min-width: 1200px) {
-  .container {
-    padding-left: 0;
-    padding-right: 0;
-  }
-}
-
-/* ============================================================
-   21. PRINT STYLES (graceful degradation)
-   ============================================================ */
-@media print {
-  body {
-    font-size: 12pt;
-    color: #000;
-    background: #fff;
-  }
-
-  .countdown,
-  .section-rsvp,
-  button,
-  .btn {
-    display: none;
-  }
-}
-
-/* ============================================================
-   22. LANDING PAGE (no guest parameter)
-   ============================================================ */
-#landing-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f8f4f0 0%, #ede7e0 50%, #f5efe8 100%);
-  text-align: center;
-  padding: 2rem;
-}
-
-.landing-content {
-  max-width: 500px;
-}
-
-.landing-pretext {
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: #8E44AD;
-  margin-bottom: 0.5rem;
-}
-
-.landing-names {
-  font-size: 3rem;
-  font-weight: 300;
-  color: #2C3E50;
-  margin: 0.5rem 0;
-  line-height: 1.2;
-}
-
-.landing-amp {
-  display: block;
-  font-size: 1.5rem;
-  color: #8E44AD;
-  margin: 0.25rem 0;
-}
-
-.landing-divider {
-  width: 60px;
-  height: 2px;
-  background: #8E44AD;
-  margin: 1.5rem auto;
-}
-
-.landing-message {
-  font-size: 1rem;
-  color: #666;
-  line-height: 1.8;
-}
-
-@media (min-width: 768px) {
-  .landing-names {
-    font-size: 4rem;
-  }
-  .landing-amp {
-    display: inline;
-    font-size: 2.5rem;
-    margin: 0 0.3rem;
-  }
-}
-
-/* ============================================================
-   22. LANDING PAGE (no guest parameter)
+   23. LANDING PAGE (no guest parameter)
    ============================================================ */
 #landing-page {
   display: none;
@@ -597,11 +692,12 @@ textarea:focus-visible {
 }
 
 .landing-pretext {
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   color: #8E44AD;
   margin-bottom: 0.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 .landing-names {
@@ -615,21 +711,22 @@ textarea:focus-visible {
 .landing-amp {
   display: block;
   font-size: 1.5rem;
-  color: #8E44AD;
+  color: #c9a96e;
   margin: 0.25rem 0;
 }
 
 .landing-divider {
   width: 60px;
   height: 2px;
-  background: #8E44AD;
+  background: linear-gradient(90deg, transparent, #c9a96e, transparent);
   margin: 1.5rem auto;
 }
 
 .landing-message {
   font-size: 1rem;
-  color: #666;
+  color: #8a7a6a;
   line-height: 1.8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 @media (min-width: 768px) {
@@ -639,6 +736,24 @@ textarea:focus-visible {
   .landing-amp {
     display: inline;
     font-size: 2.5rem;
-    margin: 0 0.5rem;
+    margin: 0 0.3rem;
+  }
+}
+
+/* ============================================================
+   24. PRINT STYLES
+   ============================================================ */
+@media print {
+  body {
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+  }
+
+  .envelope-screen,
+  #rsvp-section,
+  button,
+  .btn {
+    display: none !important;
   }
 }

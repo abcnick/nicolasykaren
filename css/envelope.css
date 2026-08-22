@@ -12,7 +12,6 @@
   width: 90vw;
   max-width: 320px;
   height: 220px;
-  margin: 2rem auto;
   perspective: 1000px;
   cursor: pointer;
 }
@@ -26,7 +25,7 @@
   height: 70%;
   background: linear-gradient(135deg, #f5e6d3, #f0d9c0);
   border-radius: 0 0 8px 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
   z-index: 2;
 }
 
@@ -53,8 +52,8 @@
   width: 90%;
   height: 80%;
   background: #ffffff;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   transform: translateY(0);
   z-index: 1;
   overflow: hidden;
@@ -65,10 +64,33 @@
   text-align: center;
 }
 
-/* Card content is hidden until envelope opens */
+/* Card content styling */
 .card .card-content {
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+.card .card-content #couple-greeting {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8a7a6a;
+  margin-bottom: 0.4rem;
+}
+
+.card .card-content #guest-greeting {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #2C3E50;
+  margin: 0.3rem 0;
+  font-family: 'Georgia', serif;
+}
+
+.card .card-content #ticket-count {
+  font-size: 0.8rem;
+  color: #8E44AD;
+  margin-top: 0.4rem;
+  margin-bottom: 0;
 }
 
 /* ==========================================================================
@@ -146,6 +168,10 @@
     max-width: 280px;
     height: 190px;
   }
+
+  .card .card-content #guest-greeting {
+    font-size: 1rem;
+  }
 }
 
 /* Tablets and larger */
@@ -153,6 +179,18 @@
   .envelope-wrapper {
     max-width: 380px;
     height: 260px;
+  }
+
+  .card .card-content #couple-greeting {
+    font-size: 0.85rem;
+  }
+
+  .card .card-content #guest-greeting {
+    font-size: 1.4rem;
+  }
+
+  .card .card-content #ticket-count {
+    font-size: 0.9rem;
   }
 }
 

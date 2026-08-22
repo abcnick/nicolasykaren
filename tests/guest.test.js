@@ -103,7 +103,7 @@ describe('Guest Page Logic', () => {
       const errorPage = document.getElementById('error-page');
       const errorMessage = document.getElementById('error-message');
 
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
       expect(errorMessage.textContent).toBe('Este enlace no es válido.');
     });
 
@@ -112,7 +112,7 @@ describe('Guest Page Logic', () => {
       window.GuestPage.init();
 
       const errorPage = document.getElementById('error-page');
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
     });
 
     test('shows error page when guest parameter is whitespace only', () => {
@@ -120,7 +120,7 @@ describe('Guest Page Logic', () => {
       window.GuestPage.init();
 
       const errorPage = document.getElementById('error-page');
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
     });
 
     test('shows envelope and initializes when guest parameter is present', () => {
@@ -226,7 +226,7 @@ describe('Guest Page Logic', () => {
 
       const errorPage = document.getElementById('error-page');
       const errorMessage = document.getElementById('error-message');
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
       expect(errorMessage.textContent).toBe('Este enlace no es válido.');
     });
 
@@ -240,7 +240,7 @@ describe('Guest Page Logic', () => {
 
       const errorPage = document.getElementById('error-page');
       const retryBtn = document.getElementById('retry-btn');
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
       expect(retryBtn.style.display).toBe('inline-block');
     });
 
@@ -254,7 +254,7 @@ describe('Guest Page Logic', () => {
 
       const errorPage = document.getElementById('error-page');
       const retryBtn = document.getElementById('retry-btn');
-      expect(errorPage.style.display).toBe('block');
+      expect(errorPage.style.display).toBe('flex');
       expect(retryBtn.style.display).toBe('inline-block');
     });
 

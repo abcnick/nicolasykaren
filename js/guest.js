@@ -4,11 +4,12 @@
  * 
  * Flow:
  * 1. On DOMContentLoaded, parse ?guest=<id> from URL
- * 2. If no guest param → show error page, hide envelope
- * 3. If guest param present → show envelope, wait for envelope open callback
- * 4. After envelope opens → call API.getGuest(id)
- * 5. On success → render greeting with guest name and ticket count
- * 6. On error/not found → show error page
+ * 2. If no guest param → show landing page, hide everything else
+ * 3. If guest param present → show ONLY envelope screen (full viewport centered)
+ * 4. After envelope click + animation completes → call API.getGuest(id)
+ * 5. On success → render greeting inside the card
+ * 6. After greeting renders → fade in content sections below
+ * 7. On error/not found → show error page
  */
 
 (function () {
@@ -48,13 +49,17 @@
   function showErrorPage(message, options) {
     options = options || {};
 
+    var envelopeScreen = document.querySelector('.envelope-screen');
     var envelopeWrapper = document.querySelector('.envelope-wrapper');
     var cardContent = document.querySelector('.card-content');
     var errorPage = document.getElementById('error-page');
     var errorMessage = document.getElementById('error-message');
     var retryBtn = document.getElementById('retry-btn');
 
-    // Hide envelope and card content
+    // Hide envelope screen/wrapper and card content
+    if (envelopeScreen) {
+      envelopeScreen.style.display = 'none';
+    }
     if (envelopeWrapper) {
       envelopeWrapper.style.display = 'none';
     }
@@ -64,7 +69,7 @@
 
     // Show error page
     if (errorPage) {
-      errorPage.style.display = 'block';
+      errorPage.style.display = 'flex';
     }
     if (errorMessage) {
       errorMessage.textContent = message;
@@ -120,7 +125,6 @@
 
     // Show card content with couple greeting
     if (cardContent) {
-      // Set the couple greeting if there's a designated element, otherwise prepend
       var coupleEl = cardContent.querySelector('#couple-greeting');
       if (coupleEl) {
         coupleEl.textContent = coupleGreeting;
@@ -128,8 +132,10 @@
       cardContent.style.display = 'block';
     }
 
-    // Show all content sections now that guest is loaded
-    showContentSections(guest);
+    // After a short delay for the greeting to be visible, reveal content sections
+    setTimeout(function () {
+      showContentSections(guest);
+    }, 1500);
   }
 
   /**
@@ -139,14 +145,12 @@
   function loadGuest(guestId) {
     API.getGuest(guestId).then(function (result) {
       if (!result || result.error) {
-        // Determine if it's a not-found vs network error
         if (result && result.notFound) {
           showErrorPage(ERROR_INVALID_LINK);
         } else {
           showErrorPage(ERROR_NETWORK, {
             showRetry: true,
             onRetry: function () {
-              // Hide error page and retry
               var errorPage = document.getElementById('error-page');
               if (errorPage) {
                 errorPage.style.display = 'none';
@@ -174,14 +178,48 @@
   }
 
   /**
-   * Show a beautiful landing page when no guest parameter is provided.
-   * Hides all invitation content and shows a simple elegant welcome screen.
+   * Show content sections with a smooth fade-in animation.
+   * Initializes all content modules.
+   * @param {Object} guest - Guest data from API
    */
   function showContentSections(guest) {
-    var sections = document.querySelectorAll('#countdown-section, #event-details-section, #photos-section, #messages-section, #dresscode-section, #gift-section, #rsvp-section');
-    sections.forEach(function (section) {
-      section.style.display = '';
-    });
+    // Show header
+    var header = document.querySelector('header');
+    if (header) header.style.display = '';
+
+    // Show and animate the invitation content wrapper
+    var contentWrapper = document.querySelector('.invitation-content');
+    if (contentWrapper) {
+      contentWrapper.style.display = 'block';
+      // Trigger reflow, then fade in
+      void contentWrapper.offsetHeight;
+      contentWrapper.style.opacity = '1';
+    }
+
+    // Initialize all content modules
+    if (typeof CONFIG !== 'undefined' && CONFIG.wedding && CONFIG.wedding.date) {
+      if (window.Countdown && typeof window.Countdown.start === 'function') {
+        window.Countdown.start(CONFIG.wedding.date);
+      }
+    }
+    if (window.EventDetails && typeof window.EventDetails.init === 'function') {
+      window.EventDetails.init();
+    }
+    if (window.Photos && typeof window.Photos.init === 'function') {
+      window.Photos.init();
+    }
+    if (window.Messages && typeof window.Messages.init === 'function') {
+      window.Messages.init();
+    }
+    if (window.DressCode && typeof window.DressCode.init === 'function') {
+      window.DressCode.init();
+    }
+    if (window.Gift && typeof window.Gift.init === 'function') {
+      window.Gift.init();
+    }
+    if (window.Logo && typeof window.Logo.init === 'function') {
+      window.Logo.init();
+    }
 
     // Initialize RSVP form with guest data
     if (window.RSVP && typeof window.RSVP.init === 'function') {
@@ -191,27 +229,27 @@
 
   /**
    * Show a beautiful landing page when no guest parameter is provided.
-   * Hides all invitation content and shows a simple elegant welcome screen.
    */
   function showLandingPage() {
-    // Hide envelope, error page, and all content sections
+    var envelopeScreen = document.querySelector('.envelope-screen');
     var envelopeWrapper = document.querySelector('.envelope-wrapper');
     var errorPage = document.getElementById('error-page');
     var header = document.querySelector('header');
-    var sections = document.querySelectorAll('#countdown-section, #event-details-section, #photos-section, #messages-section, #dresscode-section, #gift-section, #rsvp-section');
+    var contentWrapper = document.querySelector('.invitation-content');
 
+    if (envelopeScreen) envelopeScreen.style.display = 'none';
     if (envelopeWrapper) envelopeWrapper.style.display = 'none';
     if (errorPage) errorPage.style.display = 'none';
     if (header) header.style.display = 'none';
+    if (contentWrapper) contentWrapper.style.display = 'none';
 
-    sections.forEach(function (section) {
-      section.style.display = 'none';
-    });
-
-    // Show the landing page
+    // Show the landing page if it exists
     var landingPage = document.getElementById('landing-page');
     if (landingPage) {
       landingPage.style.display = 'flex';
+    } else {
+      // Fallback: if no landing page element, show error
+      showErrorPage(ERROR_INVALID_LINK);
     }
   }
 
@@ -229,15 +267,33 @@
       return;
     }
 
-    // Show envelope and initialize it with a callback
+    // Hide header and content while showing envelope
+    var header = document.querySelector('header');
+    if (header) {
+      header.style.display = 'none';
+    }
+    var contentWrapper = document.querySelector('.invitation-content');
+    if (contentWrapper) {
+      contentWrapper.style.display = 'none';
+      contentWrapper.style.opacity = '0';
+    }
+
+    // Show the envelope screen (full viewport centered) or fallback to envelope-wrapper
+    var envelopeScreen = document.querySelector('.envelope-screen');
     var envelopeWrapper = document.querySelector('.envelope-wrapper');
-    if (envelopeWrapper) {
+    if (envelopeScreen) {
+      envelopeScreen.style.display = 'flex';
+    } else if (envelopeWrapper) {
       envelopeWrapper.style.display = 'block';
     }
 
     // Initialize envelope: when it opens, fetch guest data
     if (window.Envelope && typeof window.Envelope.init === 'function') {
       window.Envelope.init(function () {
+        // Hide the hint text
+        var hint = document.querySelector('.envelope-hint');
+        if (hint) hint.style.display = 'none';
+        // Fetch guest data
         loadGuest(guestId);
       });
     } else {
