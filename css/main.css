@@ -153,13 +153,7 @@ a:hover {
    6. FLORAL CORNER DECORATIONS
    ============================================================ */
 .floral-corner {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.9;
-  display: block;
+  display: none;
 }
 
 .floral-top-left {
@@ -299,19 +293,19 @@ section h2 {
   font-family: var(--font-heading);
 }
 
-/* Dark sections */
+/* Dark sections — no individual backgrounds, fondo-largo handles everything */
 #countdown-section,
 #gift-section {
-  background: linear-gradient(180deg, rgba(15, 28, 46, 0.6) 0%, rgba(27, 40, 56, 0.4) 100%);
-  border-top: 1px solid rgba(201, 169, 110, 0.1);
-  border-bottom: 1px solid rgba(201, 169, 110, 0.1);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
 }
 
-/* Light (cream) sections */
+/* Light (cream) sections — transparent too */
 #event-details-section,
 #photos-section,
 #messages-section {
-  background: linear-gradient(180deg, rgba(250, 246, 239, 0.03) 0%, rgba(250, 246, 239, 0.01) 100%);
+  background: transparent;
 }
 
 /* ============================================================
@@ -373,7 +367,7 @@ img {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  margin-bottom: 0;
+  margin-bottom: 1rem;
 }
 
 .invitation-content::after {
@@ -767,10 +761,10 @@ img {
 .message-block {
   margin-bottom: 2rem;
   padding: 1.8rem;
-  background: linear-gradient(135deg, rgba(27, 40, 56, 0.5), rgba(15, 28, 46, 0.3));
-  border-radius: 12px;
+  background: transparent;
+  border-radius: 0;
   border-left: 3px solid var(--gold);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: none;
 }
 
 .message-block h3 {
