@@ -33,10 +33,10 @@ const CONFIG = {
   dressCode: {
     text: "Formal / Black Tie Optional",
     colors: [
+      { hex: "#1B2838", name: "Midnight Blue" },
       { hex: "#2C3E50", name: "Navy" },
-      { hex: "#8E44AD", name: "Purple" },
-      { hex: "#1ABC9C", name: "Teal" },
-      { hex: "#F39C12", name: "Gold" }
+      { hex: "#C9A96E", name: "Bronze" },
+      { hex: "#D4AF37", name: "Gold" }
     ]
   },
 

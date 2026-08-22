@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Karen & Nicolas — Nuestra Boda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/envelope.css">
 </head>
@@ -49,8 +52,12 @@
     <!-- Invitation Content Wrapper (hidden until guest data loads) -->
     <div class="invitation-content" style="display:none; opacity:0;">
 
+    <!-- Floral Corner Decorations -->
+    <div class="floral-corner floral-top-left"></div>
+    <div class="floral-corner floral-top-right"></div>
+
     <!-- Countdown Section -->
-    <section id="countdown-section">
+    <section id="countdown-section" class="reveal-on-scroll">
         <h2>Cuenta Regresiva</h2>
         <div class="countdown-display">
             <div class="countdown-unit">
@@ -74,7 +81,7 @@
     </section>
 
     <!-- Event Details Section -->
-    <section id="event-details-section">
+    <section id="event-details-section" class="reveal-on-scroll">
         <h2>Detalles del Evento</h2>
 
         <!-- Ceremony -->
@@ -102,26 +109,26 @@
     </section>
 
     <!-- Photos Section -->
-    <section id="photos-section">
+    <section id="photos-section" class="reveal-on-scroll">
         <h2>Fotos</h2>
         <div id="photos-grid"></div>
     </section>
 
     <!-- Messages Section -->
-    <section id="messages-section">
+    <section id="messages-section" class="reveal-on-scroll">
         <h2>Mensajes</h2>
         <div id="messages-container"></div>
     </section>
 
     <!-- Dress Code Section -->
-    <section id="dresscode-section">
+    <section id="dresscode-section" class="reveal-on-scroll">
         <h2>Código de Vestimenta</h2>
         <p id="dresscode-text"></p>
         <div id="dresscode-colors"></div>
     </section>
 
     <!-- Gift Section -->
-    <section id="gift-section">
+    <section id="gift-section" class="reveal-on-scroll">
         <h2 id="gift-heading"></h2>
         <p id="gift-message"></p>
         <div id="gift-bank-details">
@@ -134,7 +141,7 @@
     </section>
 
     <!-- RSVP Section -->
-    <section id="rsvp-section">
+    <section id="rsvp-section" class="reveal-on-scroll">
         <h2>Confirmar Asistencia</h2>
 
         <form id="rsvp-form" onsubmit="event.preventDefault(); RSVP.submit();">
@@ -170,6 +177,17 @@
             <button id="rsvp-retry-btn">Intentar de nuevo</button>
         </div>
     </section>
+
+    <!-- Floral Bottom Decorations -->
+    <div class="floral-corner floral-bottom-left"></div>
+    <div class="floral-corner floral-bottom-right"></div>
+
+    <!-- Decorative Footer -->
+    <footer class="wedding-footer">
+        <div class="footer-divider"></div>
+        <p class="footer-initials">K & N</p>
+        <p class="footer-date">14 · Junio · 2028</p>
+    </footer>
 
     </div><!-- /.invitation-content -->
 

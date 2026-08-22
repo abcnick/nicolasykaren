@@ -135,7 +135,7 @@
     // After a short delay for the greeting to be visible, reveal content sections
     setTimeout(function () {
       showContentSections(guest);
-    }, 1500);
+    }, 500);
   }
 
   /**
@@ -236,6 +236,20 @@
         window.RSVP.init(guest.id, guest.ticketCount || 1);
       }
     }
+
+    // Set up Intersection Observer for scroll reveal animations
+    var observerOptions = { threshold: 0.15 };
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('.reveal-on-scroll').forEach(function(el) {
+      observer.observe(el);
+    });
   }
 
   /**
