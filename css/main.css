@@ -50,10 +50,6 @@ body {
   line-height: 1.6;
   color: var(--text-light);
   background-color: #0a1628;
-  background-image: url('../img/fondo-largo.png');
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: repeat-y;
   overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
 }
@@ -257,6 +253,10 @@ section {
   max-width: 700px;
   margin: 0 auto;
   position: relative;
+  background-image: url('../img/fondo-central.png');
+  background-size: 100% auto;
+  background-position: center;
+  background-repeat: repeat-y;
 }
 
 /* Floral separator between sections */
@@ -362,24 +362,24 @@ img {
   content: '';
   display: block;
   width: 100%;
-  height: 100px;
-  background-image: url('../img/flores-borde-top.png');
-  background-size: contain;
+  padding-bottom: 177%; /* Aspect ratio of the superior image (tall mobile) */
+  background-image: url('../img/fondo-superior.png');
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center;
-  margin-bottom: 1rem;
+  background-position: top center;
+  margin-bottom: -60%;
 }
 
 .invitation-content::after {
   content: '';
   display: block;
   width: 100%;
-  height: 100px;
-  background-image: url('../img/flores-borde-bottom.png');
-  background-size: contain;
+  padding-bottom: 177%;
+  background-image: url('../img/fondo-inferior.png');
+  background-size: 100% auto;
   background-repeat: no-repeat;
-  background-position: center;
-  margin-top: 0;
+  background-position: bottom center;
+  margin-top: -60%;
 }
 
 /* ============================================================
@@ -1244,13 +1244,6 @@ button:active,
    26. MEDIA QUERIES — Tablet (768px+)
    ============================================================ */
 @media (min-width: 768px) {
-  body {
-    background-image: url('../img/fondo-principal.png');
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-  }
-
   h2 { font-size: 1.8rem; }
   h3 { font-size: 1.4rem; }
 
