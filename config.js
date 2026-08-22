@@ -7,7 +7,7 @@
  */
 const CONFIG = {
   wedding: {
-    date: "2025-06-14T16:00:00-05:00", // ISO 8601 — update with actual wedding date
+    date: "2028-06-14T16:00:00-05:00", // ISO 8601 — update with actual wedding date
     couple: { name1: "Karen", name2: "Nicolas" }
   },
 
