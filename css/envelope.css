@@ -242,6 +242,7 @@
 
 .envelope-wrapper.opening .envelope-flap {
   animation: flapOpen 0.8s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+  z-index: -1; /* Goes behind card when opening */
 }
 
 .envelope-wrapper.opening .card {
@@ -265,11 +266,12 @@
 
 .envelope-wrapper.open .envelope-flap {
   transform: rotateX(-180deg);
+  z-index: -1; /* Behind card when open */
 }
 
 .envelope-wrapper.open .card {
   transform: translateY(-95%);
-  z-index: 0;
+  z-index: 0; /* Behind body (1), but above flap (-1) */
   box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 }
 
