@@ -57,9 +57,13 @@ const CONFIG = {
   ],
 
   photos: [
-    { src: "img/photos/pareja.jpg", alt: "Karen y Nicolas" },
-    { src: "img/photos/parejacorazon.jpg", alt: "Karen y Nicolas - corazón" },
-    { src: "img/photos/parejaatardecer.jpg", alt: "Karen y Nicolas al atardecer" }
+    { src: "img/photos/1.jpeg", alt: "Karen y Nicolas1" },
+    { src: "img/photos/2.jpeg", alt: "Karen y Nicolas2 - corazón" },
+    { src: "img/photos/3.jpeg", alt: "Karen y Nicolas3 al atardecer" },
+    { src: "img/photos/4.jpeg", alt: "Karen y Nicolas4" },
+    { src: "img/photos/5.jpeg", alt: "Karen y Nicolas5 - corazón" },
+    { src: "img/photos/6.jpeg", alt: "Karen y Nicolas6 al atardecer" },
+    { src: "img/photos/6.jpeg", alt: "Karen y Nicolas6 al atardecer" }
   ],
 
   logo: {

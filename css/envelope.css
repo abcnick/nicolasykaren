@@ -225,19 +225,14 @@
   }
 }
 
-/* Card slides UP and moves to FRONT (above everything) */
+/* Card slides UP — stays BEHIND the envelope body the whole time */
 @keyframes cardSlideOut {
   0% {
     transform: translateY(0);
-    z-index: 0;
-  }
-  1% {
-    z-index: 10; /* Jump to front immediately when animation starts */
   }
   100% {
-    transform: translateY(-75%);
-    z-index: 10;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+    transform: translateY(-95%);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -273,9 +268,9 @@
 }
 
 .envelope-wrapper.open .card {
-  transform: translateY(-75%);
-  z-index: 10;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  transform: translateY(-95%);
+  z-index: 0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .envelope-wrapper.open .card .card-content {
