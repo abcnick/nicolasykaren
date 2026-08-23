@@ -49,7 +49,7 @@ body {
   font-size: 20px;
   line-height: 1.6;
   color: var(--text-light);
-  background-color: #1B2838;
+  background-color: #0a1628;
   background-image: url('../img/fondo-central.png');
   background-size: 100% auto;
   background-position: top center;
@@ -68,8 +68,10 @@ body.envelope-active {
   body {
     background-image: url('../img/fondo-principal.png');
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
-    background-position: center top;
+    background-position: center;
+    transition: background-image 0s;
   }
 }
 
@@ -887,11 +889,11 @@ img {
    19. RSVP SECTION — Dark themed with gold accents
    ============================================================ */
 #rsvp-section {
-  background: transparent;
+  background: linear-gradient(180deg, rgba(15, 28, 46, 0.5) 0%, rgba(27, 40, 56, 0.3) 100%);
   padding: 3.5rem 1.5rem 4rem;
-  border-radius: 0;
+  border-radius: 20px 20px 0 0;
   margin-top: 1rem;
-  border-top: none;
+  border-top: 1px solid rgba(201, 169, 110, 0.2);
 }
 
 #rsvp-form {
