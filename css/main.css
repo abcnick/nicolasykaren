@@ -405,29 +405,13 @@ img {
   margin: 0 auto;
 }
 
-/* Mobile: fondo-superior at top, fondo-inferior at bottom */
+/* Mobile: no need for separate top/bottom images — fondo-central covers everything */
 .invitation-content::before {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-bottom: 50%;
-  background-image: url('../img/fondo-superior.png');
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: bottom center;
+  display: none;
 }
 
 .invitation-content::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 0;
-  padding-bottom: 50%;
-  background-image: url('../img/fondo-inferior.png');
-  background-size: 100% auto;
-  background-repeat: no-repeat;
-  background-position: top center;
+  display: none;
 }
 
 /* Desktop: hide the mobile top/bottom background images */
