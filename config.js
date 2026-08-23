@@ -8,7 +8,7 @@
 const CONFIG = {
   wedding: {
     date: "2027-08-23T16:00:00-05:00", // ISO 8601 — update with actual wedding date
-    couple: { name1: "Karen Cabrera", name2: "Nicolas Gutierrez" }
+    couple: { name1: "Nicolas Gutierrez", name2: "Karen Cabrera" }
   },
 
   ceremony: {
@@ -56,13 +56,13 @@ const CONFIG = {
   ],
 
   photos: [
-    { src: "img/photos/1.jpeg", alt: "Karen y Nicolas1" },
-    { src: "img/photos/2.jpeg", alt: "Karen y Nicolas2 - corazón" },
-    { src: "img/photos/3.jpeg", alt: "Karen y Nicolas3 al atardecer" },
+    { src: "img/photos/7.jpeg", alt: "Karen y Nicolas1" },
+    { src: "img/photos/6.jpeg", alt: "Karen y Nicolas2 - corazón" },
+    { src: "img/photos/5.jpeg", alt: "Karen y Nicolas3 al atardecer" },
     { src: "img/photos/4.jpeg", alt: "Karen y Nicolas4" },
-    { src: "img/photos/5.jpeg", alt: "Karen y Nicolas5 - corazón" },
-    { src: "img/photos/6.jpeg", alt: "Karen y Nicolas6 al atardecer" },
-    { src: "img/photos/7.jpeg", alt: "Karen y Nicolas6 al atardecer" }
+    { src: "img/photos/3.jpeg", alt: "Karen y Nicolas5 - corazón" },
+    { src: "img/photos/2.jpeg", alt: "Karen y Nicolas6 al atardecer" },
+    { src: "img/photos/1.jpeg", alt: "Karen y Nicolas6 al atardecer" }
   ],
 
   logo: {

@@ -22,7 +22,7 @@
 
   function play() {
     if (!audio) {
-      audio = new Audio('audio/a-thousand-years.mp3');
+      audio = new Audio('audio/Accidentally.mp3');
       audio.loop = true;
       audio.volume = 0.4;
     }
