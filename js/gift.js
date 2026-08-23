@@ -11,7 +11,7 @@
 (function () {
   'use strict';
 
-  var DEFAULT_INSTRUCTIONS = 'Puedes enviar tu regalo a través de transferencia bancaria o por el enlace de pago.';
+  var DEFAULT_INSTRUCTIONS = '';
 
   /**
    * Initialize the gift section.

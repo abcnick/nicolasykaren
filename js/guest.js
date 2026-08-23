@@ -146,7 +146,7 @@
           envelopeScreen.style.display = 'none';
         }, 2500);
       }
-    }, 1500);
+    }, 3500);
   }
 
   /**

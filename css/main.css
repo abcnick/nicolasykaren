@@ -46,7 +46,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.6;
   color: var(--text-light);
   background-color: #0a1628;
@@ -318,6 +318,28 @@ section h2 {
   font-family: var(--font-heading);
 }
 
+/* Hero Section */
+#hero-section {
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--text-light);
+  line-height: 1.6;
+  letter-spacing: 0.05em;
+}
+
+.hero-names {
+  font-family: var(--font-script);
+  font-size: 2.2rem;
+  color: var(--gold);
+  display: inline-block;
+}
+
 /* Dark sections — no individual backgrounds, fondo-largo handles everything */
 #countdown-section,
 #gift-section {
@@ -536,49 +558,80 @@ img {
   text-decoration: none;
 }
 
-/* Itinerary Timeline — Vertical line with dots */
+/* Itinerary Timeline — Alternating left/right */
 #itinerary-section {
   margin-top: 2rem;
 }
 
 #itinerary-section h3 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 #itinerary-list {
   list-style: none;
   padding: 0;
   margin: 1.5rem auto;
-  text-align: left;
-  max-width: 350px;
+  max-width: 500px;
   position: relative;
-  padding-left: 30px;
 }
 
-/* Vertical line */
+/* Center vertical line */
 #itinerary-list::before {
   content: '';
   position: absolute;
-  left: 8px;
+  left: 50%;
   top: 0;
   bottom: 0;
   width: 2px;
   background: linear-gradient(180deg, var(--gold), rgba(201, 169, 110, 0.3));
+  transform: translateX(-50%);
 }
 
 #itinerary-list li {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: 1.2rem 0;
-  border-bottom: none;
+  padding: 1.5rem 0;
   position: relative;
-  gap: 1rem;
+  width: 50%;
+}
+
+/* Alternating: odd items on the left, even on the right */
+#itinerary-list li:nth-child(odd) {
+  margin-right: auto;
+  text-align: right;
+  padding-right: 2rem;
+  flex-direction: row-reverse;
+}
+
+#itinerary-list li:nth-child(even) {
+  margin-left: auto;
+  text-align: left;
+  padding-left: 2rem;
+}
+
+/* Dot in the center */
+#itinerary-list li::before {
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 2px solid var(--navy-dark);
+  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.2);
+}
+
+#itinerary-list li:nth-child(odd)::before {
+  right: -6px;
+}
+
+#itinerary-list li:nth-child(even)::before {
+  left: -6px;
 }
 
 .itinerary-icon {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 }
 
@@ -589,30 +642,10 @@ img {
   object-fit: contain;
 }
 
-.itinerary-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
 .itinerary-info {
   display: flex;
   flex-direction: column;
-  gap: 0.15rem;
-}
-
-/* Dot on timeline */
-#itinerary-list li::before {
-  content: '';
-  position: absolute;
-  left: -26px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 12px;
-  height: 12px;
-  background: var(--gold);
-  border-radius: 50%;
-  border: 2px solid var(--navy-dark);
-  box-shadow: 0 0 0 3px rgba(201, 169, 110, 0.2);
+  gap: 0.1rem;
 }
 
 #itinerary-list li .time {
@@ -803,6 +836,7 @@ img {
   line-height: 1.8;
   margin-bottom: 0;
   font-size: 0.95rem;
+  white-space: pre-line;
 }
 
 /* ============================================================
